@@ -150,13 +150,20 @@
   gap: 24px;
 }
 
+.nav-menu > li {
+  display: flex;
+  align-items: center;
+}
+
 .nav-link {
   font-family: var(--font-heading);
-  font-size: 0.92rem;
+  font-size: 0.9375rem;
   font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--stone-700);
   position: relative;
   padding: 6px 0;
+  margin: 0;
   transition: color var(--transition-fast);
   /* Both the <a> links and the <button> dropdown toggles carry this class.
      Giving them the same inline-flex box keeps every nav item the same height,
@@ -164,8 +171,9 @@
      sat at a different size and offset from the links. */
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  line-height: 1;
+  gap: 5px;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .nav-link:hover,

@@ -353,17 +353,17 @@ img {
 }
 
 /* ==========================================================================
-   SITE-WIDE CURSOR — small 3D paper plane (travel theme)
+   SITE-WIDE CURSOR — 3D travel jet (ETHPL brand palette)
    Applied to every element so every cursor state shows the plane, over links,
    buttons and text alike. !important beats the per-element cursor rules (e.g.
-   pointer on buttons). Hotspot sits at the plane's nose (top-left). Retina
+   pointer on buttons). Hotspot sits at the plane's nose tip (3, 3). Retina
    screens get the @2x image. Falls back to the normal cursor if the image
    can't load. Touch devices have no cursor, so this is simply ignored there.
    ========================================================================== */
 *,
 *::before,
 *::after {
-  cursor: url('/static/images/cursors/cursor-plane.png') 7 10, auto !important;
+  cursor: url('/static/images/cursors/cursor-plane.png') 3 3, auto !important;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -372,9 +372,9 @@ img {
   *::after {
     cursor: -webkit-image-set(
         url('/static/images/cursors/cursor-plane.png') 1x,
-        url('/static/images/cursors/cursor-plane@2x.png') 2x) 7 10, auto !important;
+        url('/static/images/cursors/cursor-plane@2x.png') 2x) 3 3, auto !important;
     cursor: image-set(
         url('/static/images/cursors/cursor-plane.png') 1x,
-        url('/static/images/cursors/cursor-plane@2x.png') 2x) 7 10, auto !important;
+        url('/static/images/cursors/cursor-plane@2x.png') 2x) 3 3, auto !important;
   }
 }

@@ -1099,16 +1099,21 @@
      lines up with them exactly. Size/weight/font come from .nav-link. */
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
 }
 
 .dropdown-caret {
-  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72em;
+  line-height: 1;
+  transform: translateY(0.5px);
   transition: transform 0.2s ease;
 }
 
 .nav-item-dropdown.open .dropdown-caret {
-  transform: rotate(180deg);
+  transform: translateY(0.5px) rotate(180deg);
 }
 
 .nav-dropdown-menu {
@@ -1902,14 +1907,17 @@ button.nav-dropdown-toggle {
   -webkit-appearance: none;
   border: 0;
   background: none;
+  padding: 6px 0;
+  margin: 0;
   /* Match the plain <a> nav links exactly. `font: inherit` pulled the body
      font (DM Sans 400) and made the dropdown toggles lighter than the links,
-     so the nav read as a mix of weights. These three keep every nav item on
-     the same heading font and weight. */
+     so the nav read as a mix of weights. These keep every nav item on the
+     same heading font, size, weight and box height. */
   font-family: var(--font-heading);
-  font-size: 0.92rem;
+  font-size: 0.9375rem;
   font-weight: 600;
-  line-height: inherit;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
   cursor: pointer;
 }
 

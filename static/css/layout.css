@@ -158,6 +158,14 @@
   position: relative;
   padding: 6px 0;
   transition: color var(--transition-fast);
+  /* Both the <a> links and the <button> dropdown toggles carry this class.
+     Giving them the same inline-flex box keeps every nav item the same height,
+     baseline and alignment — otherwise the buttons (which were display:flex)
+     sat at a different size and offset from the links. */
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1;
 }
 
 .nav-link:hover,

@@ -351,3 +351,30 @@ img {
     padding: 0 var(--spacing-md);
   }
 }
+
+/* ==========================================================================
+   SITE-WIDE CURSOR — small 3D paper plane (travel theme)
+   Applied to every element so every cursor state shows the plane, over links,
+   buttons and text alike. !important beats the per-element cursor rules (e.g.
+   pointer on buttons). Hotspot sits at the plane's nose (top-left). Retina
+   screens get the @2x image. Falls back to the normal cursor if the image
+   can't load. Touch devices have no cursor, so this is simply ignored there.
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  cursor: url('/static/images/cursors/cursor-plane.png') 7 10, auto !important;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  *,
+  *::before,
+  *::after {
+    cursor: -webkit-image-set(
+        url('/static/images/cursors/cursor-plane.png') 1x,
+        url('/static/images/cursors/cursor-plane@2x.png') 2x) 7 10, auto !important;
+    cursor: image-set(
+        url('/static/images/cursors/cursor-plane.png') 1x,
+        url('/static/images/cursors/cursor-plane@2x.png') 2x) 7 10, auto !important;
+  }
+}

@@ -1095,10 +1095,11 @@
 }
 
 .nav-dropdown-toggle {
-  display: flex;
+  /* inline-flex (not flex) so the toggle matches the inline <a> nav links and
+     lines up with them exactly. Size/weight/font come from .nav-link. */
+  display: inline-flex;
   align-items: center;
   gap: 4px;
-  cursor: pointer;
 }
 
 .dropdown-caret {

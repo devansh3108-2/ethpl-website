@@ -1901,7 +1901,14 @@ button.nav-dropdown-toggle {
   -webkit-appearance: none;
   border: 0;
   background: none;
-  font: inherit;
+  /* Match the plain <a> nav links exactly. `font: inherit` pulled the body
+     font (DM Sans 400) and made the dropdown toggles lighter than the links,
+     so the nav read as a mix of weights. These three keep every nav item on
+     the same heading font and weight. */
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: inherit;
   cursor: pointer;
 }
 

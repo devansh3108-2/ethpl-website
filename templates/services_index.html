@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}MICE Services in India — Meetings & Events | {{ brand.name | default('ETHPL') }}{% endblock %}
+
+{% block meta_description %}Meetings and offsites, incentive travel, conferences, exhibitions, educational tours, and group flights, visas and hotels — planned end to end from Delhi.{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Services</span>
+    </nav>
+
+    <div class="section-header" data-reveal>
+      <span class="section-tag">Services</span>
+      <h1 class="section-title">What we plan</h1>
+      <p class="section-subtitle">
+        Six things, done properly, from one desk. Any of them can be booked on its own —
+        you do not have to hand over the whole event to use us for the flights.
+      </p>
+    </div>
+
+    <div class="grid-3" data-reveal-group>
+      {% for service in services %}
+      <a href="/services/{{ service.slug }}" class="service-panel">
+        <div>
+          <div class="service-panel-header">
+            <div class="feature-icon-box feature-icon-box-sm">
+              {% set point = service %}
+              {% include 'partials/benefit_icon.html' %}
+            </div>
+          </div>
+          <h2 class="service-panel-title">{{ service.name }}</h2>
+          <p class="service-panel-desc">{{ service.tagline }}</p>
+        </div>
+        <div class="service-panel-action">Read more <span>→</span></div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="handoff-notice-box mt-16">
+      <div class="handoff-notice-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+      </div>
+      <div>
+        <h3>Not sure which of these you need?</h3>
+        <p>
+          Describe the event in your own words — the rough dates, how many people, and what
+          it is meant to achieve. We will tell you what it actually requires, including when
+          that is less than you expected.
+        </p>
+      </div>
+      <button class="btn btn-primary btn-sm open-rfp-btn" type="button">Describe your event</button>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{
+  "slug": "singapore",
+  "name": "Singapore",
+  "region": "international",
+  "country": "Singapore",
+  "hero_image": "/static/images/singapore.png",
+  "card_image": "/static/images/singapore.png",
+  "tagline": "High-tech summits, fintech expos & sustainable urban venues",
+  "intro": "Asia’s premier business crossroads featuring world-renowned convention venues like Marina Bay Sands and integrated tech infrastructure.",
+  "best_season": "Year-round (Best Nov - Feb)",
+  "typical_duration": "3N / 4D",
+  "partner_url": "https://www.holidaymyplanet.com/singapore",
+  "featured": true,
+  "bento_size": "1x2",
+  "sort_order": 2,
+  "category": "short-haul",
+  "category_label": "Short-haul",
+  "good_for": [
+    "Conference",
+    "Incentive",
+    "Educational"
+  ],
+  "best_months": "Year-round",
+  "access": "Direct flights from Delhi, roughly five and a half hours.",
+  "highlights": [
+    "The most reliable logistics in Asia: transfers, venues and AV run to schedule, which matters when a client or the board is attending.",
+    "Excellent for conferences with external delegates and for educational and industrial visit programmes.",
+    "Compact and walkable, so a tight agenda loses very little time to movement."
+  ],
+  "planning_note": "The highest cost per delegate in this list, and it rises sharply during major conferences and the Formula One weekend. Check the city's event calendar before committing.",
+  "ideal_group_size": "",
+  "gallery": []
+}

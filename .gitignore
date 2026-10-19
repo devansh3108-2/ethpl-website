@@ -1,0 +1,46 @@
+# ─── Python ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+build/
+dist/
+wheels/
+*.egg-info/
+.eggs/
+
+# ─── Virtual environments ─────────────────────────────────
+venv/
+.venv/
+env/
+ENV/
+
+# ─── Testing / coverage ───────────────────────────────────
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ─── Vercel ───────────────────────────────────────────────
+.vercel/
+
+# ─── Secrets / local config ───────────────────────────────
+.env
+.env.*
+!.env.example
+*.sqlite3
+
+# ─── Editors / OS ─────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ─── Internal tooling notes (not part of the app) ─────────
+info_about_handover_to_other_ai_tools.md
+
+# Node tooling used only for local screenshots, never shipped
+node_modules/
+package.json

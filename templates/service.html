@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}{{ service.short_name | default(service.name) }} | {{ brand.name | default('ETHPL') }}{% endblock %}
+
+{% block meta_description %}{{ service.tagline | truncate(150, true, '') }}{% endblock %}
+
+{% block content %}
+<section class="section section-pad-top">
+  <div class="container">
+    <!-- Service Hero -->
+    <div class="service-hero-panel mb-12">
+      <div class="service-hero-grid">
+        <div>
+          <div class="service-hero-tags mb-3">
+            <span class="badge badge-orange">{{ service.badge }}</span>
+            <span class="meta-note">Corporate Services Desk</span>
+          </div>
+          <h1 class="service-hero-title">{{ service.name }}</h1>
+          <p class="service-hero-desc">
+            {{ service.tagline }}
+          </p>
+          {# The partner portal used to be the primary button here, so the most
+             prominent action on the page sent the visitor to another company
+             before we had captured anything. Our own enquiry is now primary and
+             the partner link is a plain secondary link. #}
+          <div class="service-hero-actions mt-6">
+            <button class="btn btn-primary btn-lg open-rfp-btn" type="button">
+              Get a Free Proposal
+            </button>
+            <a href="{{ service.url }}?utm_source=ethpl&utm_medium=catalogue&utm_campaign=service-{{ service.slug }}"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn btn-ghost btn-lg"
+               aria-label="{{ service.name }} — self-serve booking on our partner portal (opens holidaymyplanet.com in a new tab)">
+              <span>Book it yourself</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+          <div class="service-hero-note mt-3">
+            <small class="meta-note">
+              Group and corporate requirements are handled by our desk. Individual self-serve bookings are processed on our partner platform, <strong>holidaymyplanet.com</strong>.
+            </small>
+          </div>
+        </div>
+
+        <div class="service-highlights-card">
+          <h3 class="service-highlights-title">Corporate Advantages</h3>
+          <ul class="service-highlights-list">
+            {% for item in service.highlights %}
+            <li>
+              <span class="check-icon" aria-hidden="true">✓</span>
+              <span>{{ item }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Process Workflow (How It Works) -->
+    <div class="mb-14">
+      <div class="section-header text-center mb-8">
+        <span class="section-tag">Workflow</span>
+        <h2 class="section-title" style="font-size: 1.6rem;">How It Works</h2>
+        <p class="section-subtitle">A streamlined 4-step process designed for corporate delegates and administrative organizers.</p>
+      </div>
+
+      <div class="grid-4 service-steps-grid">
+        {% for step in service.process_steps %}
+        <div class="service-step-card">
+          <div class="service-step-num">{{ step.step }}</div>
+          <h4 class="service-step-title">{{ step.title }}</h4>
+          <p class="service-step-desc">{{ step.desc }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Data Table (if present, e.g. Visa) -->
+    {% if service.data_table %}
+    <div class="mb-14">
+      <div class="section-header mb-4">
+        <span class="section-tag">Fee & SLA Benchmarks</span>
+        <h2 class="section-title" style="font-size: 1.5rem;">{{ service.data_table.title }}</h2>
+      </div>
+
+      <div class="rate-table-wrap">
+        <table class="rate-table">
+          <caption class="sr-only">{{ service.data_table.caption }}</caption>
+          <thead>
+            <tr>
+              {% for header in service.data_table.headers %}
+              <th scope="col">{{ header }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in service.data_table.rows %}
+            <tr>
+              <td><strong>{{ row[0] }}</strong></td>
+              <td>{{ row[1] }}</td>
+              <td><span class="badge badge-green">{{ row[2] }}</span></td>
+              <td class="table-fare">{{ row[3] }}</td>
+              <td>{{ row[4] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="disclaimer-banner mt-4">
+        <strong>Indicative Fee Notice:</strong> {{ service.data_table.disclaimer }}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Handoff CTA Box -->
+    <div class="handoff-cta-panel">
+      <div class="handoff-cta-content">
+        <h3>Ready to Proceed with {{ service.short_name }}?</h3>
+        {# "transparent pricing" removed — this site publishes indicative figures
+           only, confirmed in a written proposal. #}
+        <p>
+          Tell us your group size and dates and we will come back with an itemised quote in 24-48 hours.
+        </p>
+      </div>
+      <div class="handoff-cta-buttons">
+        <button class="btn btn-primary btn-lg open-rfp-btn" type="button">
+          Request a Group Quote
+        </button>
+        <a href="{{ service.url }}?utm_source=ethpl&utm_medium=catalogue&utm_campaign=service-cta-{{ service.slug }}"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn btn-ghost btn-lg">
+          <span>Self-serve on partner portal</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

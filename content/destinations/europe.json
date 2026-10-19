@@ -1,0 +1,33 @@
+{
+  "slug": "europe",
+  "name": "Europe",
+  "region": "international",
+  "country": "Europe",
+  "category": "long-haul",
+  "category_label": "Long-haul",
+  "tagline": "Flagship incentive and conference programmes",
+  "intro": "Usually the top prize in a multi-year incentive programme, or the venue for a conference with international delegates. The travel and visa lead times are longer than anything else here, and that is the main thing to plan around.",
+  "good_for": [
+    "Incentive",
+    "Conference"
+  ],
+  "best_months": "May to September",
+  "best_season": "May to September",
+  "access": "Direct and one-stop flights from Delhi; typically eight to ten hours.",
+  "highlights": [
+    "The strongest reward value available, and the natural flagship for a long-running incentive scheme.",
+    "Serious conference infrastructure in the major cities for events with international attendees.",
+    "Rail connections between cities make a genuine multi-country itinerary workable."
+  ],
+  "planning_note": "Schengen visa appointment availability is the binding constraint, not flights or hotels, and in peak season slots can be months out. Start a European programme far earlier than you would any other destination — and treat the visa timeline as the project plan.",
+  "typical_duration": "6N / 7D",
+  "sort_order": 24,
+  "featured": false,
+  "bento_size": "1x1",
+  "card_image": "",
+  "hero_image": "",
+  "image_is_placeholder": true,
+  "_image_note": "TODO(ethpl): no photograph held for this destination. Supply a real image, set card_image and hero_image, then remove image_is_placeholder.",
+  "ideal_group_size": "",
+  "gallery": []
+}

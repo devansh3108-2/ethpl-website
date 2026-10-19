@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Thank you — we have your enquiry | {{ brand.name | default('ETHPL') }}{% endblock %}
+
+{% block meta_description %}Your enquiry has reached the {{ brand.name | default('ETHPL') }} events desk. We will come back to you with an itemised proposal.{% endblock %}
+
+{# A conversion landing page has no business in search results, and indexing it
+   would also let people reach it without submitting anything. #}
+{% block head_extra %}<meta name="robots" content="noindex, nofollow">{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="legal-page" style="text-align: center;">
+      <div class="feature-icon-box" style="margin: 0 auto var(--spacing-lg);">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+
+      <h1 class="section-title">Thank you — we have your enquiry</h1>
+      <p class="section-subtitle">
+        It has gone straight to our events desk. You will hear from a named manager, not an auto-responder.
+      </p>
+
+      <div class="legal-notice" style="text-align: left; margin-top: var(--spacing-xl);">
+        <strong>What happens next</strong>
+        <ol style="margin: var(--spacing-sm) 0 0 var(--spacing-lg); line-height: 1.9;">
+          <li>We read your brief and check feasibility for your dates.</li>
+          <li>If anything is unclear, we call you — usually the same working day.</li>
+          <li>You get an itemised proposal with 2–3 options within 24–48 hours.</li>
+        </ol>
+      </div>
+
+      <p class="meta-note" style="margin-top: var(--spacing-xl);">
+        Need to add something, or in a hurry?
+        {% if brand.phone %}
+        Call <a href="tel:{{ brand.phone | replace(' ', '') }}" data-track="phone-click">{{ brand.phone }}</a>{% if brand.whatsapp %} or
+        <a href="https://wa.me/{{ brand.whatsapp | replace(' ', '') | replace('+', '') }}" target="_blank" rel="noopener noreferrer" data-track="whatsapp-click">message us on WhatsApp</a>{% endif %}.
+        {% elif brand.email %}
+        Write to <a href="mailto:{{ brand.email }}">{{ brand.email }}</a>.
+        {% else %}
+        {# TODO(ethpl): a phone number here would materially help. Fill in
+           brand.phone / brand.whatsapp in content/site.json. #}
+        Reply to the confirmation you receive and it will reach the same desk.
+        {% endif %}
+      </p>
+
+      <div class="section-action-center" style="margin-top: var(--spacing-2xl);">
+        <a href="/destinations" class="btn btn-outline btn-lg">Browse destinations</a>
+        <a href="/blog" class="btn btn-ghost btn-lg">Read our planning guides</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

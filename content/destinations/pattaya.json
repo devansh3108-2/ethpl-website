@@ -1,0 +1,34 @@
+{
+  "slug": "pattaya",
+  "name": "Pattaya",
+  "region": "international",
+  "country": "Thailand",
+  "hero_image": "/static/images/bangkok.png",
+  "card_image": "/static/images/bangkok.png",
+  "tagline": "Large-scale convention halls & seaside entertainment meets",
+  "intro": "Home to PEACH (Pattaya Exhibition and Convention Hall), beachfront resorts, and vibrant offsite team celebration venues.",
+  "best_season": "November to March",
+  "typical_duration": "3N / 4D",
+  "partner_url": "https://www.holidaymyplanet.com/pattaya",
+  "featured": false,
+  "sort_order": 14,
+  "category": "short-haul",
+  "category_label": "Short-haul",
+  "good_for": [
+    "Incentive",
+    "Offsite",
+    "Budget-friendly"
+  ],
+  "best_months": "November to February",
+  "access": "Flights from Delhi to Bangkok, then about two hours by road.",
+  "highlights": [
+    "Beach resorts with large banquet capacity at a lower cost per delegate than most Indian beach destinations.",
+    "Usually paired with a night or two in Bangkok, so one trip covers a working session and a reward leg.",
+    "Suits dealer and channel-partner trips where scale and perceived value matter more than exclusivity."
+  ],
+  "planning_note": "Property standards vary more here than almost anywhere else on this list. The specific hotel matters far more than the destination, so do not sign off on a category alone.",
+  "image_is_placeholder": true,
+  "_image_note": "TODO(ethpl): card_image/hero_image currently reuse another destination's photo. Supply a real photograph of this destination, then remove image_is_placeholder.",
+  "ideal_group_size": "",
+  "gallery": []
+}

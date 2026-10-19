@@ -1,0 +1,528 @@
+/* ==========================================================================
+   ETHPL — MOTION SYSTEM
+   Principles: motion clarifies, it never decorates.
+   - Entrances play ONCE. Nothing loops.
+   - Movement is short (<= 16px) and fast (<= 560ms).
+   - Everything degrades to static under prefers-reduced-motion.
+   ========================================================================== */
+
+/* --- Motion tokens --------------------------------------------------------- */
+:root {
+  --dur-fast:   150ms;
+  --dur-base:   260ms;
+  --dur-slow:   480ms;
+  --dur-reveal: 560ms;
+
+  /* Decelerating curve: fast start, soft landing. Reads as responsive. */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --reveal-shift: 14px;
+  --stagger-step: 70ms;
+}
+
+/* --- Keyframes ------------------------------------------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(var(--reveal-shift)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--dur-base) var(--ease-out) forwards;
+}
+
+/* --- Scroll reveal --------------------------------------------------------- */
+/* Driven by static/js/reveal.js (IntersectionObserver).
+   The `js-motion` class is set on <html> by that script, so if JS is disabled
+   or fails, content stays visible instead of being stuck at opacity 0. */
+
+.js-motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+  will-change: opacity, transform;
+}
+
+.js-motion [data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity   var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
+}
+
+/* Once the entrance has played, drop the compositor hint. */
+.js-motion [data-reveal].is-settled {
+  will-change: auto;
+}
+
+/* Stagger: children of a [data-reveal-group] cascade in.
+   Capped at 8 so a long grid never leaves the reader waiting. */
+.js-motion [data-reveal-group].is-revealed > * {
+  animation: fadeUp var(--dur-reveal) var(--ease-out) both;
+}
+.js-motion [data-reveal-group].is-revealed > *:nth-child(1) { animation-delay: 0ms; }
+.js-motion [data-reveal-group].is-revealed > *:nth-child(2) { animation-delay: calc(var(--stagger-step) * 1); }
+.js-motion [data-reveal-group].is-revealed > *:nth-child(3) { animation-delay: calc(var(--stagger-step) * 2); }
+.js-motion [data-reveal-group].is-revealed > *:nth-child(4) { animation-delay: calc(var(--stagger-step) * 3); }
+.js-motion [data-reveal-group].is-revealed > *:nth-child(5) { animation-delay: calc(var(--stagger-step) * 4); }
+.js-motion [data-reveal-group].is-revealed > *:nth-child(6) { animation-delay: calc(var(--stagger-step) * 5); }
+.js-motion [data-reveal-group].is-revealed > *:nth-child(7) { animation-delay: calc(var(--stagger-step) * 6); }
+.js-motion [data-reveal-group].is-revealed > *:nth-child(n+8) { animation-delay: calc(var(--stagger-step) * 7); }
+
+/* Release the entrance once it has played. `animation-fill-mode: both` keeps
+   the final keyframe pinned forever, and a running animation outranks plain
+   declarations — so without this, every hover lift inside a reveal group is
+   silently dead. `.is-settled` lands 700ms after reveal, well past the 560ms
+   entrance, so dropping the animation here is invisible. */
+.js-motion [data-reveal-group].is-settled > * {
+  animation: none;
+}
+
+/* Group children must not be pre-hidden by the parent rule as well —
+   the parent only orchestrates, the children carry the animation. */
+.js-motion [data-reveal-group] > * { opacity: 1; }
+.js-motion [data-reveal-group]:not(.is-revealed) > * { opacity: 0; }
+
+/* --- Page entrance --------------------------------------------------------- */
+/* Above-the-fold content should not wait for a scroll event. */
+.js-motion [data-enter] > * {
+  animation: fadeUp var(--dur-slow) var(--ease-out) both;
+}
+.js-motion [data-enter] > *:nth-child(1) { animation-delay: 40ms; }
+.js-motion [data-enter] > *:nth-child(2) { animation-delay: 110ms; }
+.js-motion [data-enter] > *:nth-child(3) { animation-delay: 180ms; }
+.js-motion [data-enter] > *:nth-child(4) { animation-delay: 250ms; }
+.js-motion [data-enter] > *:nth-child(n+5) { animation-delay: 320ms; }
+
+/* --- Micro-interactions ---------------------------------------------------- */
+.hover-lift {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Buttons acknowledge the press. Small, immediate, physical. */
+.btn {
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color     var(--dur-fast) var(--ease-out),
+    color            var(--dur-fast) var(--ease-out),
+    transform        var(--dur-fast) var(--ease-out),
+    box-shadow       var(--dur-fast) var(--ease-out);
+}
+.btn:active { transform: translateY(1px); }
+
+/* Nav underline grows from the left rather than fading in. */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* Outbound glyphs drift the way the link sends you. */
+.external-glyph,
+.dest-ext-indicator svg {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+a:hover > .external-glyph,
+a:hover .dest-ext-indicator svg {
+  transform: translate(2px, -2px);
+}
+
+/* Dropdown eases open instead of snapping. */
+.nav-dropdown-menu {
+  transition:
+    opacity    var(--dur-base) var(--ease-out),
+    transform  var(--dur-base) var(--ease-out),
+    visibility var(--dur-base) var(--ease-out);
+}
+
+/* --- Process infographic: the brief in transit ----------------------------- */
+/* The three-step graphic animates as a narrative, not a slideshow. A brief
+   leaves the first desk, lays a trail along the route behind it, and each desk
+   comes alive only as it receives the handover — so the motion states the
+   claim the section is making ("one desk owns it end to end") rather than
+   decorating it.
+
+   This deliberately breaks the 560ms / 16px ceiling the rest of the system
+   obeys. That ceiling governs chrome, where movement is feedback. Here the
+   movement IS the content: a 640-unit journey across ~2.6s is the diagram.
+
+   The graphic is fully legible with no motion at all — the dotted track and
+   every node are painted by default, and only the `.js-motion` gate hides
+   them for the entrance. */
+
+:root {
+  --proc-run:  2200ms;   /* one end-to-end journey */
+  --proc-lead:  240ms;   /* pause before the brief sets off */
+  --proc-cycle: 5200ms;  /* standing loop: ~2.9s travelling, ~2.3s resting */
+  --proc-cycle-lead: 3000ms; /* holds until the entrance has fully settled */
+}
+
+/* Pre-entrance state. Gated on `.js-motion` so a JS failure or a reduced-motion
+   reader gets the finished diagram, never an empty frame. */
+.js-motion .process-figure .proc-trail,
+.js-motion .process-figure .proc-icon > * {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+/* Ungated on purpose. Every other pre-entrance state hides behind `.js-motion`
+   so a JS failure still shows finished content, but a comet frozen mid-route is
+   not content -- with no animation to run it would just be a bright stub parked
+   past the first desk. It stays hidden until something animates it. */
+.process-figure .proc-pulse {
+  opacity: 0;
+}
+
+.js-motion .process-figure .proc-packet,
+.js-motion .process-figure .proc-disc,
+.js-motion .process-figure .proc-badge,
+.js-motion .process-figure .proc-label,
+.js-motion .process-figure .proc-sub,
+.js-motion .process-figure .proc-icon-fill {
+  opacity: 0;
+}
+
+/* SVG transforms need an explicit box, or they pivot on the viewBox origin
+   and the discs fly in from the top-left corner. */
+.proc-disc,
+.proc-badge,
+.proc-packet {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* --- Keyframes --- */
+
+/* The trail is one line with pathLength normalised to 1, so a single
+   dashoffset carries it across all three legs with dwell time at each desk. */
+@keyframes procTrail {
+  0%, 11%   { stroke-dashoffset: 1; }
+  40%, 56%  { stroke-dashoffset: 0.5; }
+  84%, 100% { stroke-dashoffset: 0; }
+}
+
+/* The brief keeps pace with the trail head: identical percentages, so the
+   two never drift apart. It vanishes under each disc, which reads as the
+   desk taking receipt before passing it on. */
+@keyframes procPacket {
+  0%        { transform: translateX(0);     opacity: 0; }
+  8%, 11%   { transform: translateX(0);     opacity: 1; }
+  40%, 56%  { transform: translateX(320px); opacity: 1; }
+  84%       { transform: translateX(640px); opacity: 1; }
+  93%, 100% { transform: translateX(640px); opacity: 0; }
+}
+
+/* A touch of overshoot so the desk lands rather than fades up. */
+@keyframes procDisc {
+  0%   { opacity: 0; transform: scale(0.35); }
+  60%  { opacity: 1; transform: scale(1.06); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes procDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes procFade {
+  to { opacity: 1; }
+}
+
+/* The numeral stamps on, slightly off-axis, like a received-and-logged mark. */
+@keyframes procBadge {
+  0%   { opacity: 0; transform: scale(0) rotate(-28deg); }
+  70%  { opacity: 1; transform: scale(1.14) rotate(5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes procText {
+  from { opacity: 0; transform: translateY(9px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Assignment. Each node carries its own `--node-delay` inline. --- */
+
+.js-motion .process-figure.is-revealed .proc-trail {
+  animation: procTrail var(--proc-run) var(--ease-in-out) var(--proc-lead) both;
+}
+
+.js-motion .process-figure.is-revealed .proc-packet {
+  animation: procPacket var(--proc-run) var(--ease-in-out) var(--proc-lead) both;
+}
+
+.js-motion .process-figure.is-revealed .proc-disc {
+  animation: procDisc 520ms var(--ease-out) var(--node-delay) both;
+}
+
+.js-motion .process-figure.is-revealed .proc-icon > * {
+  animation: procDraw 460ms var(--ease-out) calc(var(--node-delay) + 150ms) both;
+}
+
+/* The filled dot inside the proposal icon has no stroke to draw, so it fades. */
+.js-motion .process-figure.is-revealed .proc-icon-fill {
+  animation: procFade 300ms var(--ease-out) calc(var(--node-delay) + 320ms) both;
+}
+
+.js-motion .process-figure.is-revealed .proc-badge {
+  animation: procBadge 480ms var(--ease-out) calc(var(--node-delay) + 240ms) both;
+}
+
+.js-motion .process-figure.is-revealed .proc-label {
+  animation: procText 480ms var(--ease-out) calc(var(--node-delay) + 170ms) both;
+}
+
+.js-motion .process-figure.is-revealed .proc-sub {
+  animation: procText 480ms var(--ease-out) calc(var(--node-delay) + 240ms) both;
+}
+
+/* Hover deliberately uses `filter` and nothing else: the entrance animations
+   above run with fill-mode `both`, which would outrank any transform or
+   opacity a hover rule tried to set. */
+.proc-node {
+  transition: filter var(--dur-base) var(--ease-out);
+}
+
+.proc-node:hover {
+  filter: drop-shadow(0 6px 14px rgb(65 107 41 / 0.34));
+}
+
+/* --- The standing loop ----------------------------------------------------- */
+/* The rest of this system holds that nothing loops. This is the one exception,
+   and it is scoped to earn it: the diagram claims a desk that runs continuously,
+   so once the entrance settles the finished route keeps carrying a comet rather
+   than freezing into a diagram of something that happened once.
+
+   Three things keep it from becoming wallpaper:
+     - it animates only `transform` and `opacity`, so it is composited and never
+       repaints the line beneath it;
+     - a rest beat sits inside the cycle, so it reads as a pulse with a pause
+       rather than a marquee at constant speed;
+     - the structural content never moves, so nothing important is in motion.
+
+   Slow it down or stop it from one place: raise --proc-cycle, or set
+   `.proc-pulse { animation: none; }`. */
+@keyframes procPulse {
+  0%        { transform: translateX(-70px); opacity: 0; }
+  7%        { transform: translateX(0);     opacity: 1; }
+  52%       { transform: translateX(550px); opacity: 1; }
+  59%, 100% { transform: translateX(550px); opacity: 0; }
+}
+
+.js-motion .process-figure.is-revealed .proc-pulse {
+  animation: procPulse var(--proc-cycle) var(--ease-in-out)
+             var(--proc-cycle-lead) infinite both;
+}
+
+/* --- Reduced motion -------------------------------------------------------- */
+/* Anything above that hides content must be neutralised here, not just slowed:
+   a 0.01ms transition on opacity:0 still leaves it invisible. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js-motion [data-reveal],
+  .js-motion [data-reveal-group] > *,
+  .js-motion [data-reveal-group]:not(.is-revealed) > *,
+  .js-motion [data-enter] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* The process graphic hides its parts with stroke-dashoffset as well as
+     opacity, so both have to be released here. */
+  .process-figure .proc-trail,
+  .process-figure .proc-packet,
+  .process-figure .proc-disc,
+  .process-figure .proc-badge,
+  .process-figure .proc-label,
+  .process-figure .proc-sub,
+  .process-figure .proc-icon > *,
+  .process-figure .proc-icon-fill {
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* The standing loop stops entirely; it is decoration, so it is dropped
+     rather than released into a static artefact. */
+  .process-figure .proc-pulse {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .proc-node:hover { filter: none; }
+
+  .btn:active { transform: none; }
+  .nav-link::after { transition: none; }
+}
+
+/* ==========================================================================
+   PHASE 2B: HOMEPAGE MOTION
+
+   Every animation in this block is decorative. All of them are switched off
+   in the prefers-reduced-motion block at the end of this file, and the page
+   must be fully usable with them off — nothing here reveals content that is
+   otherwise hidden, and no element starts at opacity 0 without a visible
+   end state, so a failed animation cannot leave the page blank.
+   ========================================================================== */
+
+/* Hero entrance: eyebrow, headline, subtitle, buttons, cards, in that order.
+   Driven by a data attribute rather than nth-child so reordering the markup
+   cannot silently scramble the sequence. */
+@keyframes enter-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+[data-enter-step] {
+  animation: enter-rise 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+[data-enter-step="1"] { animation-delay: 0.05s; }
+[data-enter-step="2"] { animation-delay: 0.15s; }
+[data-enter-step="3"] { animation-delay: 0.27s; }
+[data-enter-step="4"] { animation-delay: 0.39s; }
+[data-enter-step="5"] { animation-delay: 0.51s; }
+
+/* Floating hero cards. Each drifts on its own offset so the stack does not
+   bob in unison, which reads as a glitch rather than motion. */
+@keyframes float-drift {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+
+.hero-float-card {
+  animation: float-drift 6.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-float-card-2 { animation-delay: -2.1s; animation-duration: 7.4s; }
+.hero-float-card-3 { animation-delay: -4.3s; animation-duration: 6.9s; }
+
+/* The leaf ring behind the hero. Very slow: at this size anything faster
+   pulls the eye away from the headline. */
+@keyframes ring-rotate {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+.hero-forest-ring {
+  animation: ring-rotate 110s linear infinite;
+  will-change: transform;
+}
+
+/* Pulsing CTA. A box-shadow pulse rather than a transform, so it never
+   nudges the surrounding layout. */
+@keyframes cta-pulse {
+  0%   { box-shadow: 0 0 0 0 rgb(156 90 18 / 0.5); }
+  70%  { box-shadow: 0 0 0 14px rgb(156 90 18 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(156 90 18 / 0); }
+}
+
+.btn-pulse { animation: cta-pulse 2.6s ease-out infinite; }
+
+/* Pause the pulse while the button is being used — a ring expanding out of
+   something you are hovering or tabbed onto is distracting. */
+.btn-pulse:hover,
+.btn-pulse:focus-visible { animation-play-state: paused; }
+
+/* Infinite logo marquee. The track holds the row twice and shifts by exactly
+   half its width, so the loop point is seamless. */
+@keyframes logo-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.logo-strip-track {
+  animation: logo-marquee 38s linear infinite;
+  will-change: transform;
+}
+
+.logo-strip:hover .logo-strip-track { animation-play-state: paused; }
+
+/* Hero photos. The two cards drift on their own slow offsets so they never
+   bob in unison, and the image inside each pans and zooms almost
+   imperceptibly (a Ken Burns move). This is the motion the hero carries in
+   place of moving text. All of it is purely decorative and is switched off
+   entirely under prefers-reduced-motion below. */
+@keyframes hero-photo-float-a {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+@keyframes hero-photo-float-b {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(10px); }
+}
+@keyframes hero-photo-zoom {
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  50%      { transform: scale(1.08) translate(-1.5%, -1%); }
+}
+
+.hero-photo-1 { animation: hero-photo-float-a 7.5s ease-in-out infinite; will-change: transform; }
+.hero-photo-2 { animation: hero-photo-float-b 8.4s ease-in-out infinite; animation-delay: -2.2s; will-change: transform; }
+.hero-photo img { animation: hero-photo-zoom 16s ease-in-out infinite; }
+
+/* ==========================================================================
+   REDUCED MOTION
+
+   Anyone who has asked their system for less motion gets none of the above.
+   Vestibular disorders and migraine make drifting and pulsing genuinely
+   unpleasant, not merely a preference. Elements are pinned to their finished
+   state so the page looks settled rather than mid-animation.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  [data-enter-step],
+  .hero-float-card,
+  .hero-forest-ring,
+  .btn-pulse,
+  .logo-strip-track,
+  .hero-photo-1,
+  .hero-photo-2,
+  .hero-photo img {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  [data-enter-step] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-forest-ring { transform: translateY(-50%) !important; }
+
+  /* Tile zoom and card lift are transitions rather than animations, so they
+     need switching off separately. */
+  .dest-tile:hover .dest-tile-media img { transform: none !important; }
+
+  html { scroll-behavior: auto !important; }
+}

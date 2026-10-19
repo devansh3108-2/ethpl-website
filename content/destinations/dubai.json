@@ -1,0 +1,33 @@
+{
+  "slug": "dubai",
+  "name": "Dubai",
+  "region": "international",
+  "country": "United Arab Emirates",
+  "hero_image": "/static/images/dubai.png",
+  "card_image": "/static/images/dubai.png",
+  "tagline": "Global MICE capital, mega conventions & futuristic luxury",
+  "intro": "The premier global destination for high-capacity corporate conventions, automotive dealer launches, and luxury leadership conclaves.",
+  "best_season": "October to April",
+  "typical_duration": "4N / 5D",
+  "partner_url": "https://www.holidaymyplanet.com/dubai",
+  "featured": true,
+  "bento_size": "2x2",
+  "sort_order": 1,
+  "category": "short-haul",
+  "category_label": "Short-haul",
+  "good_for": [
+    "Conference",
+    "Incentive",
+    "Offsite"
+  ],
+  "best_months": "November to March",
+  "access": "Direct flights from Delhi, around three and a half hours.",
+  "highlights": [
+    "Purpose-built convention infrastructure handles large delegate counts and complex staging without improvisation.",
+    "Fast visa processing and dense flight capacity from every Indian metro make large-group movement predictable.",
+    "Covers both ends of a programme: serious conference facilities and genuine reward value for an incentive trip."
+  ],
+  "planning_note": "Summer heat from May to September pushes everything indoors and makes outdoor evenings unworkable. Rates also spike around major exhibitions, so check the event calendar before fixing dates.",
+  "ideal_group_size": "",
+  "gallery": []
+}

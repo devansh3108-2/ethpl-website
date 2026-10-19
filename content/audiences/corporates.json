@@ -1,0 +1,38 @@
+{
+  "slug": "corporates",
+  "order": 1,
+  "name": "Corporates",
+  "nav_label": "Corporates",
+  "title": "MICE & Corporate Travel for Companies | ETHPL",
+  "meta": "Offsites, conferences, incentive trips and group travel for companies — itemised proposals, GST invoicing and purchase-order workflows.",
+  "heading": "For companies and corporate teams",
+  "intro": "You are usually solving for three things at once: a programme that achieves something, a budget that will survive finance, and a process that procurement will accept. We plan against all three rather than just the first.",
+  "concerns": [
+    [
+      "Approval, not just a price",
+      "Proposals arrive itemised per delegate, so the number can be defended line by line in a budget meeting. A single bundled figure gets sent back for a breakdown, which costs you a week."
+    ],
+    [
+      "Procurement and paperwork",
+      "GST-compliant invoicing, purchase-order workflows, vendor documentation and advance schedules — handled as part of the job rather than chased afterwards."
+    ],
+    [
+      "Duty of care",
+      "Written safety and movement plans, a named on-ground manager, and an escalation contact. If something goes wrong at 11pm, somebody answers."
+    ],
+    [
+      "Nobody wants to look bad",
+      "The real fear with an offsite is embarrassment in front of leadership. Most of what we do is removing the ways a day can fall apart: transfer timing, AV redundancy, a plan for weather."
+    ]
+  ],
+  "formats": [
+    "Annual sales conferences and town halls",
+    "Leadership and strategy retreats",
+    "Team offsites and departmental away-days",
+    "Dealer, channel-partner and top-performer incentive trips",
+    "Exhibition and trade-show travel",
+    "Standalone group flights, visas and hotel blocks"
+  ],
+  "cta": "Get an itemised proposal",
+  "org_type": "Corporate"
+}

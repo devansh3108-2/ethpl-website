@@ -1,0 +1,33 @@
+{
+  "slug": "exhibitions",
+  "order": 4,
+  "icon": "layers",
+  "name": "Exhibitions & Trade Shows",
+  "short_name": "Exhibitions",
+  "title": "Exhibition & Trade Show Travel India | ETHPL",
+  "meta": "Exhibition and trade show logistics: delegate travel, hotel blocks near the venue, stand team movement and group visa support.",
+  "tagline": "Getting your team, and your stand team, to the show.",
+  "intro": "Exhibition travel has a different shape to an offsite. People arrive and leave on different days, the venue dictates everything, and hotels within walking distance sell out first. The planning is logistics, not hospitality.",
+  "included": [
+    "Hotel blocks as close to the venue as availability allows, booked early",
+    "Staggered arrivals and departures around build-up and tear-down days",
+    "Group and individual flight booking with date flexibility where it matters",
+    "Visa processing aligned to show dates, including urgent cases",
+    "Daily transfers between hotel and venue on a schedule that fits show hours",
+    "A single point of contact for changes during the show"
+  ],
+  "questions": [
+    [
+      "Our team arrives across four different days. Is that a problem?",
+      "It is the normal case for exhibitions, and it is why we treat these separately from group travel. Each person gets their own itinerary against one consolidated booking."
+    ],
+    [
+      "Can you book the stand or the exhibition space?",
+      "No — stand space and build are usually contracted directly with the organiser or your fabricator. We handle getting people there and housed, and we work around the build schedule you give us."
+    ],
+    [
+      "How late can you add a delegate?",
+      "Often later than you would think, though the cost rises and the hotel may not be the same one. Tell us as soon as you know rather than waiting for confirmation."
+    ]
+  ]
+}

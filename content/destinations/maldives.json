@@ -1,0 +1,32 @@
+{
+  "slug": "maldives",
+  "name": "Maldives",
+  "region": "international",
+  "country": "Maldives",
+  "category": "long-haul",
+  "category_label": "Long-haul",
+  "tagline": "Top-tier incentive trips for small groups",
+  "intro": "The strongest reward signal available for a small, high-performing group. One resort island means the group is together for the whole trip, which is either exactly what you want or the reason to choose somewhere else.",
+  "good_for": [
+    "Incentive"
+  ],
+  "best_months": "November to April",
+  "best_season": "November to April",
+  "access": "Direct flights from Delhi, roughly four hours, then a seaplane or speedboat transfer.",
+  "highlights": [
+    "Reads as a genuine prize in a way few destinations do, which is the entire purpose of an incentive trip.",
+    "A single resort island keeps a small group together without any internal logistics.",
+    "Short flight relative to how far away it feels."
+  ],
+  "planning_note": "Cost per delegate is the highest on this list and resort capacity caps group size hard — most properties cannot take a large group at all. Seaplane transfers only run in daylight, so arrival timing drives the whole itinerary.",
+  "typical_duration": "4N / 5D",
+  "sort_order": 22,
+  "featured": false,
+  "bento_size": "1x1",
+  "card_image": "",
+  "hero_image": "",
+  "image_is_placeholder": true,
+  "_image_note": "TODO(ethpl): no photograph held for this destination. Supply a real image, set card_image and hero_image, then remove image_is_placeholder.",
+  "ideal_group_size": "",
+  "gallery": []
+}

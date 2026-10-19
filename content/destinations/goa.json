@@ -1,0 +1,34 @@
+{
+  "slug": "goa",
+  "name": "Goa",
+  "region": "india",
+  "country": "India",
+  "hero_image": "/static/images/goa.png",
+  "card_image": "/static/images/goa.png",
+  "tagline": "Beachside annual conclaves, gala lawns & hackathons",
+  "intro": "India’s top offsite hub offering expansive 5-star beachfront resorts, grand ballroom facilities, and relaxed team-bonding environments.",
+  "best_season": "October to March",
+  "typical_duration": "3N / 4D",
+  "partner_url": "https://www.holidaymyplanet.com/goa",
+  "featured": true,
+  "bento_size": "1x2",
+  "sort_order": 3,
+  "category": "beach",
+  "category_label": "Beach",
+  "good_for": [
+    "Offsite",
+    "Incentive",
+    "Conference",
+    "Budget-friendly"
+  ],
+  "best_months": "October to March",
+  "access": "Direct flights from Delhi, roughly two and a half hours.",
+  "highlights": [
+    "Beachfront resorts that hold a conference hall, breakout rooms and a gala lawn on one property, so delegates never need a coach between sessions.",
+    "Short enough flight to run a three-night offsite over a weekend without burning annual leave.",
+    "Works across budgets: the same itinerary can be built on a four-star north Goa property or a luxury south Goa resort."
+  ],
+  "planning_note": "Rates roughly double over Christmas and New Year, and the better properties are committed months ahead. For a December offsite, start eight to ten weeks out.",
+  "ideal_group_size": "",
+  "gallery": []
+}

@@ -1,0 +1,33 @@
+{
+  "slug": "baku",
+  "name": "Baku",
+  "region": "international",
+  "country": "Azerbaijan",
+  "hero_image": "/static/images/baku.png",
+  "card_image": "/static/images/baku.png",
+  "tagline": "Grand Caspian boulevards, fast e-visas & budget arbitrage",
+  "intro": "An emerging hotspot delivering European architectural grandeur at competitive rates, with 3-hour urgent e-visas and 5-star Caspian venues.",
+  "best_season": "April to June, Sept to Nov",
+  "typical_duration": "4N / 5D",
+  "partner_url": "https://www.holidaymyplanet.com/baku",
+  "featured": true,
+  "bento_size": "1x1",
+  "sort_order": 4,
+  "category": "short-haul",
+  "category_label": "Short-haul",
+  "good_for": [
+    "Incentive",
+    "Conference",
+    "Offsite"
+  ],
+  "best_months": "April to June and September to October",
+  "access": "Direct flights from Delhi, roughly five hours.",
+  "highlights": [
+    "A European-feeling city at a materially lower cost than Europe, with no Schengen process to manage.",
+    "Fast electronic visa processing, which removes the longest lead time from an international group trip.",
+    "Compact centre with walkable venues and a short airport transfer, so a three-night programme stays productive."
+  ],
+  "planning_note": "Winters are cold and wet, and midsummer is hot. The shoulder seasons are genuinely better for a working programme, not just cheaper.",
+  "ideal_group_size": "",
+  "gallery": []
+}

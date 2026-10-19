@@ -1,0 +1,100 @@
+{% extends "admin/layout.html" %}
+
+{% block page_title %}Hero photos{% endblock %}
+
+{% block content %}
+{#
+  Lets the business replace the two photos in the homepage hero without
+  touching code. Uploaded images are stored in the lead database and served
+  from /media/<key>; the public homepage overlays them onto the hero. With no
+  database connected there is nowhere to keep an upload, so the page says so
+  rather than pretending to save.
+#}
+
+<div class="admin-card">
+  <div class="admin-card-header">
+    <div>
+      <h2 class="admin-card-title">Homepage hero photos</h2>
+      <p class="admin-card-sub">
+        The two photos in the opening section of your homepage. Upload a JPG,
+        PNG or WebP (portrait works best, up to {{ max_mb }} MB each). Changes
+        go live within a minute.
+      </p>
+    </div>
+    <a href="/" target="_blank" class="admin-btn admin-btn-secondary admin-btn-sm">Preview site ↗</a>
+  </div>
+
+  {% if saved %}
+  <div class="admin-flash admin-flash-ok" role="status"
+       style="margin:0 0 20px;padding:12px 16px;border-radius:10px;background:#E7F6EC;color:#1B5E2B;border:1px solid #BfE4C8;font-weight:600;">
+    Saved. Your homepage updates within a minute.
+  </div>
+  {% endif %}
+
+  {% if error %}
+  <div class="admin-flash admin-flash-error" role="alert"
+       style="margin:0 0 20px;padding:12px 16px;border-radius:10px;background:#FBE9E7;color:#8A1C10;border:1px solid #F3C6Bf;font-weight:600;">
+    {{ error }}
+  </div>
+  {% endif %}
+
+  {% if state.store == 'unconfigured' %}
+  <div class="admin-empty">
+    <h3>No database connected yet</h3>
+    <p>
+      Uploaded photos are kept in the same database that stores your enquiries.
+      Set <code>DATABASE_URL</code> in your hosting environment and reload this
+      page. Until then the homepage shows a neat "Your photo here" placeholder
+      in each slot.
+    </p>
+  </div>
+  {% elif state.store == 'unreachable' %}
+  <div class="admin-empty">
+    <h3>Database unreachable</h3>
+    <p>The photo store is configured but not responding right now. Try again in a moment.</p>
+  </div>
+  {% else %}
+  <form method="post" action="/admin/appearance" enctype="multipart/form-data">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;">
+      {% for key in hero_keys %}
+      {% set slot = state.slots.get(key) %}
+      <fieldset style="border:1px solid var(--admin-border,#E2E2E2);border-radius:12px;padding:18px;">
+        <legend style="font-weight:700;padding:0 8px;">
+          Photo {{ loop.index }}{% if loop.first %} — larger / back{% else %} — smaller / front{% endif %}
+        </legend>
+
+        <div style="aspect-ratio:4/5;border-radius:10px;overflow:hidden;background:#EDEDED;display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          {% if slot and slot.has_photo %}
+          <img src="/media/{{ key }}?v={{ slot.version }}" alt="Current photo {{ loop.index }}"
+               style="width:100%;height:100%;object-fit:cover;" />
+          {% else %}
+          <span style="color:#8a8a8a;font-weight:600;">No photo yet</span>
+          {% endif %}
+        </div>
+
+        <label style="display:block;font-weight:600;margin-bottom:6px;" for="photo_{{ loop.index }}">
+          {% if slot and slot.has_photo %}Replace photo{% else %}Upload photo{% endif %}
+        </label>
+        <input type="file" id="photo_{{ loop.index }}" name="photo_{{ loop.index }}"
+               accept="image/jpeg,image/png,image/webp"
+               style="display:block;width:100%;margin-bottom:14px;" />
+
+        <label style="display:block;font-weight:600;margin-bottom:6px;" for="alt_{{ loop.index }}">
+          Describe the photo <span style="font-weight:400;color:#777;">(for accessibility &amp; SEO)</span>
+        </label>
+        <input type="text" id="alt_{{ loop.index }}" name="alt_{{ loop.index }}" maxlength="160"
+               value="{{ slot.alt if slot else '' }}"
+               placeholder="e.g. Annual sales conference in Dubai"
+               style="display:block;width:100%;padding:8px 10px;border:1px solid var(--admin-border,#CfCfCf);border-radius:8px;" />
+      </fieldset>
+      {% endfor %}
+    </div>
+
+    <div style="margin-top:22px;display:flex;gap:12px;align-items:center;">
+      <button type="submit" class="admin-btn admin-btn-primary">Save photos</button>
+      <span style="color:#777;">Leave a slot empty to keep its current photo.</span>
+    </div>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

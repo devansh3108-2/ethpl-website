@@ -1,0 +1,353 @@
+/* ==========================================================================
+   ETHPL MICE & CORPORATE TRAVEL DESIGN SYSTEM
+
+   The public brand is ETHPL; the legal entity is ETHPL Travel & Hospitality
+   Pvt Ltd. No other name belongs anywhere in the codebase — this file used to
+   credit the palette to "Earnest Travel & Hospitality", one of five different
+   names the site carried.
+
+   Every colour used in a template must come from a token defined here. Do not
+   hard-code a hex value in a template or another stylesheet.
+   ========================================================================== */
+
+:root {
+  /* ── 1. Primitive Tokens ─────────────────────────────────────────── */
+  /* ── Brand palette ────────────────────────────────────────────────
+     The seven values below are the brand's own, taken from the logo:
+     a green tree with a brown trunk. Everything else in this file is
+     derived from them. Change a brand colour here, nowhere else.
+
+       Forest green  #2F5D27  dark sections, hero, and body-size links
+       Brand green   #4E8A2E  labels and large headings only — see below
+       Leaf green    #8CC152  highlights — decorative only, never text
+
+     Measured contrast (WCAG 2.1), not estimated:
+       Forest on white        7.73:1  AA and AAA for body text
+       Forest on cream        7.09:1  AA and AAA for body text
+       Brand green on white   4.20:1  FAILS AA for body text
+       Brand green on cream   3.85:1  FAILS AA for body text
+       White on Amber CTA     5.41:1  AA
+       Amber on cream         4.96:1  AA
+       Charcoal on cream     14.45:1  AAA
+       Leaf on white          2.13:1  decorative only
+       Leaf on Forest         3.63:1  decorative only
+
+     Brand green is therefore NOT used for body-size text. It clears the
+     3:1 large-text threshold, so it is allowed on headings at 24px or
+     18.66px bold and above, on eyebrow labels at those sizes, and on
+     non-text marks. Body copy, inline links and small labels use Forest
+     green, which is the same brand family and passes comfortably.
+       Amber         #9C5A12  every call-to-action
+       Bark brown    #7A5230  accents
+       Cream         #F7F5EE  page background
+       Charcoal      #1F2421  text
+
+     Amber is reserved for actions. If it appears on something that is
+     not clickable, that is a bug. */
+  --brand-forest:   #2F5D27;
+  --brand-green:    #4E8A2E;
+  --brand-leaf:     #8CC152;
+  --brand-amber:    #9C5A12;
+  --brand-bark:     #7A5230;
+  --brand-cream:    #F7F5EE;
+  --brand-charcoal: #1F2421;
+
+  /* ── Brand ramps (leaf canopy + bark trunk, after the tree logo) ───
+     The ramp anchors on the brand values above: 600 is Brand green,
+     700 is Forest green, 400 is Leaf green. The intermediate steps are
+     tints and shades of those, so existing rules that reference the
+     ramp recolour to the brand automatically. */
+  --leaf-50:  #F2F7EC;
+  --leaf-100: #E0EFCF;
+  --leaf-200: #C5E2A8;
+  --leaf-300: #A9D37D;
+  --leaf-400: #8CC152;   /* Leaf green — decorative fills only */
+  --leaf-500: #6BA63D;   /* mid leaf */
+  --leaf-600: #4E8A2E;   /* Brand green — large text and marks only (4.20:1) */
+  --leaf-700: #2F5D27;   /* Forest green — body text and links (7.73:1) */
+  --leaf-800: #244A1E;
+  --leaf-900: #1A3516;
+
+  /* Bark Brown — trunk / secondary + accent */
+  --bark-50:  #F7F2EB;
+  --bark-100: #EBDFCD;
+  --bark-200: #DAC6A6;
+  --bark-300: #C4A87C;
+  --bark-400: #A8865C;   /* trunk highlight */
+  --bark-500: #8E6740;   /* trunk mid */
+  --bark-600: #7A5230;   /* Bark brown — accents */
+  --bark-700: #5E3F25;   /* AA-safe on white — accent text */
+  --bark-800: #452E1B;   /* espresso — dark buttons */
+  --bark-900: #2E1F12;
+
+  /* Amber ramp. Amber is the action colour: every CTA uses --amber-cta,
+     which is AA-safe as white-on-amber (4.8:1) and as amber-on-cream. */
+  --amber-cta:       #9C5A12;
+  --amber-cta-hover: #83490C;
+  --amber-cta-subtle:#FBF1E4;
+
+  /* Compatibility aliases: prior amber (primary) / terracotta (accent)
+     names now resolve onto the leaf/bark brand ramps, so every existing
+     rule recolors from this single file. */
+  --amber-50:  var(--leaf-50);
+  --amber-100: var(--leaf-100);
+  --amber-200: var(--leaf-200);
+  --amber-300: var(--leaf-300);
+  --amber-400: var(--leaf-400);
+  --amber-500: var(--leaf-500);
+  --amber-600: var(--leaf-600);
+  --amber-700: var(--leaf-700);
+  --amber-800: var(--leaf-800);
+  --amber-900: var(--leaf-900);
+  --terracotta-400: var(--bark-400);
+  --terracotta-600: var(--bark-600);
+
+  /* Semantic Green (contrast corrected) */
+  --green-50:  #F0FDF4;
+  --green-100: #DCFCE7;
+  --green-300: #86EFAC;
+  --green-400: #72BF66;   /* Heritage tint — fills only */
+  --green-600: #16A34A;   /* AA-safe (3.9:1 large) */
+  --green-700: #15803D;   /* AA-safe on white (4.8:1) — inclusion ticks, success */
+
+  /* Warm Neutrals (Stone Ramp) */
+  --stone-50:  #F7F5EE;   /* Cream — page background */
+  --stone-100: #F5F5F4;
+  --stone-200: #E7E5E4;   /* Borders */
+  --stone-300: #D6D3D1;
+  --stone-400: #A8A29E;
+  --stone-500: #78716C;   /* Muted text (5.4:1 AA) */
+  --stone-600: #57534E;
+  --stone-700: #44403C;
+  --stone-800: #292524;
+  --stone-900: #1F2421;   /* Charcoal — body text & headings (14.8:1 AAA) */
+
+  /* Cool Neutrals (Slate Ramp) */
+  --slate-50:  #F8FAFC;
+  --slate-100: #F1F5F9;
+  --slate-200: #E2E8F0;
+  --slate-300: #CBD5E1;
+  --slate-400: #94A3B8;
+  --slate-500: #64748B;
+  --slate-700: #334155;
+  --slate-900: #0F172A;
+
+  /* Status */
+  --info-500:    #0EA5E9;
+  --warning-500: #F59E0B;
+  --danger-500:  #DC2626;
+  --danger-600:  #B91C1C;
+
+  /* ── 2. Semantic Tokens ──────────────────────────────────────────── */
+  --background:          var(--stone-50);
+  --foreground:          var(--stone-900);
+  --card:                #FFFFFF;
+  --card-foreground:     var(--stone-900);
+  --muted:               var(--stone-100);
+  --muted-foreground:    var(--stone-500);
+  --border:              var(--stone-200);
+  --input:               var(--stone-200);
+  --ring:                var(--amber-cta);
+
+  /* Actions are amber; labels, links and icons are brand green. Keeping
+     them apart is what makes a CTA findable on a page full of green. */
+  --primary:             var(--amber-cta);
+  --primary-hover:       var(--amber-cta-hover);
+  --primary-foreground:  #FFFFFF;
+  --primary-subtle:      var(--amber-cta-subtle);
+  --primary-emphasis:    var(--amber-cta-hover);
+
+  /* Body-size links must clear 4.5:1, which Brand green does not. Forest
+     green carries them instead; Brand green stays for large text. */
+  --brand-link:          var(--leaf-700);
+  --brand-link-hover:    var(--leaf-800);
+  --brand-label-large:   var(--leaf-600);
+  --surface-dark:        var(--brand-forest);
+  --surface-darker:      var(--leaf-800);
+  --surface-ink:         var(--brand-charcoal);
+
+  --secondary:           var(--stone-900);
+  --secondary-foreground:#FFFFFF;
+
+  --success:             var(--green-700);
+  --success-subtle:      var(--green-50);
+  --warning:             var(--warning-500);
+  --danger:              var(--danger-600);
+  --info:                var(--info-500);
+
+  --price:               var(--bark-700);    /* Prices are ALWAYS this token — earthy wood */
+  --inclusion:           var(--green-700);
+  --exclusion:           var(--stone-400);
+  --overlay:             rgb(28 25 23 / 0.55);
+
+  /* Brand shading — canopy → trunk gradients for hero, panels, accents */
+  --grad-canopy:         linear-gradient(135deg, var(--leaf-600) 0%, var(--leaf-800) 100%);
+  --grad-canopy-soft:    linear-gradient(160deg, var(--leaf-50) 0%, var(--bark-50) 100%);
+  --grad-trunk:          linear-gradient(135deg, var(--bark-600) 0%, var(--bark-800) 100%);
+  --grad-forest:         linear-gradient(120deg, var(--leaf-700) 0%, var(--bark-700) 100%);
+  --grad-leaf-accent:    linear-gradient(135deg, var(--leaf-400) 0%, var(--leaf-600) 100%);
+  --tint-canopy:         rgb(65 107 41 / 0.10);
+
+  /* ── Imageless card shading ──────────────────────────────────────
+     Cards with no photograph get their depth from light: a brand rail
+     across the top edge, a diagonal tint drifting warm-to-canopy through
+     the body, and a blurred bloom sitting off the top-right corner.
+     Two tint variants alternate across a grid so a row of cards reads as
+     a set rather than four copies of one swatch. */
+  --rail-brand:      linear-gradient(90deg, var(--bark-400) 0%, var(--bark-300) 20%, var(--leaf-300) 46%, var(--leaf-400) 66%, var(--leaf-600) 100%);
+  --rail-height:     5px;
+
+  --shade-orb:       radial-gradient(72% 58% at 97% -10%, rgb(134 186 91 / 0.24) 0%, rgb(134 186 91 / 0.12) 30%, rgb(134 186 91 / 0.04) 56%, rgb(134 186 91 / 0) 80%);
+  --shade-orb-warm:  radial-gradient(72% 58% at 97% -10%, rgb(194 162 119 / 0.26) 0%, rgb(194 162 119 / 0.13) 30%, rgb(194 162 119 / 0.04) 56%, rgb(194 162 119 / 0) 80%);
+
+  --shade-wash:      linear-gradient(138deg, rgb(225 240 210 / 0.48) 0%, rgb(255 255 255 / 0.94) 44%, rgb(246 241 234 / 0.72) 100%);
+  --shade-wash-warm: linear-gradient(138deg, rgb(234 221 203 / 0.45) 0%, rgb(255 255 255 / 0.94) 44%, rgb(242 248 236 / 0.78) 100%);
+
+  --shade-border:       rgb(65 107 41 / 0.11);
+  --shade-border-hover: rgb(65 107 41 / 0.24);
+  --shade-lift:         inset 0 1px 0 rgb(255 255 255 / 0.85),
+                        0 1px 2px rgb(37 60 23 / 0.04),
+                        0 10px 24px -12px rgb(37 60 23 / 0.14);
+  --shade-lift-hover:   inset 0 1px 0 rgb(255 255 255 / 0.85),
+                        0 2px 4px rgb(37 60 23 / 0.05),
+                        0 20px 40px -14px rgb(37 60 23 / 0.22);
+
+  --shade-icon:      linear-gradient(142deg, var(--leaf-100) 0%, var(--leaf-50) 100%);
+  --shade-icon-ring: inset 0 1px 0 rgb(255 255 255 / 0.85),
+                     0 2px 6px rgb(37 60 23 / 0.08);
+
+  /* ── 3. Backward Compatibility Aliases ───────────────────────────── */
+  --primary-deep:        var(--stone-900);
+  --primary-bright:      var(--amber-cta-hover);
+  --primary-light:       var(--amber-cta-subtle);
+  --secondary-accent:    var(--leaf-600);
+  --secondary-light:     var(--leaf-50);
+  --accent-gold:         var(--bark-400);
+  --accent-emerald:      var(--green-700);
+
+  --text-main:           var(--foreground);
+  --text-muted:          var(--stone-600);
+  --text-subtle:         var(--stone-500);
+  --text-inverse:        #FFFFFF;
+
+  --bg-page:             var(--stone-50);
+  --bg-surface:          #FFFFFF;
+  --bg-surface-elevated: #FFFFFF;
+  --bg-subtle:           var(--stone-100);
+  --bg-card:             #FFFFFF;
+
+  --border-color:        var(--stone-200);
+  --border-subtle:       var(--stone-200);
+  --border-focus:        var(--amber-cta);
+
+  /* Glassmorphism & Elevation */
+  --glass-bg:            rgba(255, 255, 255, 0.88);
+  --glass-border:        rgba(231, 229, 228, 0.8);
+  --glass-shadow:        0 8px 24px 0 rgba(28, 25, 23, 0.08);
+
+  --shadow-xs:           0 1px 2px rgb(28 25 23 / 0.05);
+  --shadow-sm:           0 2px 4px rgb(28 25 23 / 0.06), 0 1px 2px rgb(28 25 23 / 0.04);
+  --shadow-md:           0 4px 12px rgb(28 25 23 / 0.08), 0 2px 4px rgb(28 25 23 / 0.04);
+  --shadow-lg:           0 12px 28px rgb(28 25 23 / 0.10), 0 4px 8px rgb(28 25 23 / 0.05);
+  --shadow-xl:           0 24px 48px rgb(28 25 23 / 0.14), 0 8px 16px rgb(28 25 23 / 0.06);
+  --shadow-glass:        0 18px 40px rgb(86 64 42 / 0.16);
+
+  /* Typography */
+  --font-heading:        'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body:           'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:           ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Spacing */
+  --spacing-xs:          4px;
+  --spacing-sm:          8px;
+  --spacing-md:          16px;
+  --spacing-lg:          24px;
+  --spacing-xl:          36px;
+  --spacing-2xl:         48px;
+  --spacing-3xl:         72px;
+  --section-gap:         80px;
+
+  /* Border Radii */
+  --radius-xs:           4px;
+  --radius-sm:           6px;
+  --radius-md:           14px;
+  --radius-lg:           20px;   /* brief: 18-30px on cards and panels */
+  --radius-xl:           26px;
+  --radius-2xl:          30px;
+  --radius-pill:         9999px;
+  --radius-full:         9999px;
+
+  /* Transition */
+  --transition-fast:     0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal:   0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow:     0.40s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--stone-900);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 700; }
+h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); }
+h3 { font-size: clamp(1.3rem, 2vw, 1.65rem); }
+h4 { font-size: 1.15rem; }
+
+p {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+a {
+  color: var(--brand-link);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--brand-link-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+}

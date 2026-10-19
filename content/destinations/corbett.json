@@ -1,0 +1,32 @@
+{
+  "slug": "corbett",
+  "name": "Jim Corbett",
+  "region": "india",
+  "country": "India",
+  "hero_image": "/static/images/corbett.png",
+  "card_image": "/static/images/corbett.png",
+  "tagline": "Wilderness strategy conclaves & executive leadership drills",
+  "intro": "Immersive forest luxury resorts along the Kosi River ideal for focused C-suite planning sessions, team survival challenges, and safaris.",
+  "best_season": "November to May",
+  "typical_duration": "2N / 3D",
+  "partner_url": "https://www.holidaymyplanet.com/corbett",
+  "featured": false,
+  "sort_order": 7,
+  "category": "nature",
+  "category_label": "Nature & Wildlife",
+  "good_for": [
+    "Offsite",
+    "Educational",
+    "Budget-friendly"
+  ],
+  "best_months": "November to June",
+  "access": "Roughly six hours by road from Delhi.",
+  "highlights": [
+    "Closest true wilderness retreat to Delhi NCR — a two-night offsite needs no flights at all.",
+    "Resorts here are built for groups: conference halls, bonfire lawns and activity areas on one campus.",
+    "Low cost per delegate relative to anywhere comparable, which makes it a repeatable annual format."
+  ],
+  "planning_note": "Safari permits are capped and released on a schedule, so a safari for the whole group must be booked well before the stay. The park core closes during the monsoon.",
+  "ideal_group_size": "",
+  "gallery": []
+}

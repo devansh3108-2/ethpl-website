@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}MICE & Corporate Events Desk, Delhi | {{ brand.name | default('ETHPL') }}{% endblock %}
+
+{% block meta_description %}Meetings, incentives, conferences and exhibitions planned end to end from Delhi — venues, delegate movement, staging and an on-ground team.{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="section section-pad-top">
+  <div class="container">
+    <div class="service-hero-panel mb-14">
+      <div class="service-hero-grid">
+        <div data-enter>
+          <div class="service-hero-tags mb-3">
+            <span class="badge badge-orange">Corporate Events Desk</span>
+            <span class="meta-note">Meetings · Incentives · Conferences · Exhibitions</span>
+          </div>
+          <h1 class="service-hero-title">Corporate events, planned end to end.</h1>
+          <p class="service-hero-desc">
+            From a twenty-person leadership offsite to a five-thousand-delegate convention,
+            ETHPL handles the whole operation — venue sourcing, group air, ground movement,
+            visas, staging and on-site management — through a single desk and a single invoice.
+          </p>
+          <div class="service-hero-actions mt-6">
+            <button class="btn btn-primary btn-lg open-rfp-btn" type="button">
+              Request a Proposal
+            </button>
+            <a href="/destinations" class="btn btn-outline btn-lg">Browse Destinations</a>
+          </div>
+          <div class="service-hero-note mt-3">
+            <small class="meta-note">
+              Every enquiry is handled by our corporate desk. We reply with a costed,
+              itemised proposal — not an automated quote.
+            </small>
+          </div>
+        </div>
+
+        <div class="service-highlights-card" data-reveal>
+          <h3 class="service-highlights-title">Handled in-house</h3>
+          <ul class="service-highlights-list">
+            <li><span class="check-icon" aria-hidden="true">✓</span><span>Venue &amp; room-block sourcing</span></li>
+            <li><span class="check-icon" aria-hidden="true">✓</span><span>Group airfare and charter aircraft</span></li>
+            <li><span class="check-icon" aria-hidden="true">✓</span><span>Group visas and travel documentation</span></li>
+            <li><span class="check-icon" aria-hidden="true">✓</span><span>Coach fleet and airport transfers</span></li>
+            <li><span class="check-icon" aria-hidden="true">✓</span><span>Conference production, AV and staging</span></li>
+            <li><span class="check-icon" aria-hidden="true">✓</span><span>On-ground delegate management</span></li>
+            <li><span class="check-icon" aria-hidden="true">✓</span><span>Consolidated, GST-compliant billing</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The four segments -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header text-center mb-8" data-reveal>
+      <span class="section-tag">What MICE covers</span>
+      <h2 class="section-title">Four kinds of event, four different problems</h2>
+      <p class="section-subtitle">
+        They are grouped under one acronym, but they are not the same job. Each has its own
+        constraints, and we plan each differently.
+      </p>
+    </div>
+
+    <div class="grid-4 service-steps-grid" data-reveal-group>
+      <div class="feature-tile">
+        <div class="feature-tile-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path></svg>
+        </div>
+        <h3 class="feature-title">Meetings</h3>
+        <p class="feature-desc">
+          Offsites, sales kick-offs, leadership retreats, training weeks and annual general
+          meetings. Smaller groups, short notice, and a schedule that has to hold — the work
+          is logistics precision, not spectacle.
+        </p>
+      </div>
+
+      <div class="feature-tile">
+        <div class="feature-tile-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        </div>
+        <h3 class="feature-title">Incentives</h3>
+        <p class="feature-desc">
+          Reward travel for top performers, dealers and channel partners. Corporate-funded but
+          leisure in feel — the itinerary has to earn its place as a prize, which makes
+          destination and experience selection the whole job.
+        </p>
+      </div>
+
+      <div class="feature-tile">
+        <div class="feature-tile-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        </div>
+        <h3 class="feature-title">Conferences</h3>
+        <p class="feature-desc">
+          Annual summits, dealer meets and industry conventions. Pillarless hall capacity,
+          breakout rooms, staging and hybrid streaming decide the shortlist long before
+          anything else does.
+        </p>
+      </div>
+
+      <div class="feature-tile">
+        <div class="feature-tile-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"></path><path d="M5 21V7l7-4 7 4v14"></path><path d="M9 21v-6h6v6"></path></svg>
+        </div>
+        <h3 class="feature-title">Exhibitions</h3>
+        <p class="feature-desc">
+          Trade shows and expos, where we handle the delegation rather than the show floor:
+          travel, accommodation near the venue, transfers around exhibition hours, and
+          documentation for equipment and staff.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center mb-8" data-reveal>
+      <span class="section-tag">Working with us</span>
+      <h2 class="section-title">How a corporate event comes together</h2>
+      <p class="section-subtitle">
+        Group travel does not book itself from a search box. It is a proposal cycle, and this
+        is what it looks like.
+      </p>
+    </div>
+
+    <div class="grid-4 service-steps-grid" data-reveal-group>
+      <div class="service-step-card">
+        <div class="service-step-num">1</div>
+        <h4 class="service-step-title">Brief</h4>
+        <p class="service-step-desc">
+          Delegate count, dates, budget range and what the event has to achieve. Rough numbers
+          are enough to start — we will tell you what actually drives the cost.
+        </p>
+      </div>
+      <div class="service-step-card">
+        <div class="service-step-num">2</div>
+        <h4 class="service-step-title">Proposal</h4>
+        <p class="service-step-desc">
+          A costed plan: shortlisted venues, indicative airfares, a day-by-day outline and a
+          per-delegate breakdown, so you can take a real number to your approver.
+        </p>
+      </div>
+      <div class="service-step-card">
+        <div class="service-step-num">3</div>
+        <h4 class="service-step-title">Lock &amp; prepare</h4>
+        <p class="service-step-desc">
+          Room blocks and airline seats held, visas filed, rooming lists and manifests built,
+          production and transport briefed against the final schedule.
+        </p>
+      </div>
+      <div class="service-step-card">
+        <div class="service-step-num">4</div>
+        <h4 class="service-step-title">On the ground</h4>
+        <p class="service-step-desc">
+          Our team travels with the group — airport desk, hotel check-in, session timings and
+          transfers — followed by one consolidated invoice on return.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Where to go next -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header text-center mb-8" data-reveal>
+      <span class="section-tag">Start here</span>
+      <h2 class="section-title">Planning something specific?</h2>
+    </div>
+
+    <div class="grid-3" data-reveal-group>
+      <a href="/destinations" class="service-panel">
+        <div class="service-panel-header">
+          <h3 class="service-panel-title">Convention venues</h3>
+        </div>
+        <p class="service-panel-desc">
+          Hotels and resorts by delegate capacity, ballroom area and breakout rooms — from
+          fifty-person boardrooms to halls that seat thousands.
+        </p>
+        <span class="service-panel-action">Browse venues →</span>
+      </a>
+
+      <a href="/destinations" class="service-panel">
+        <div class="service-panel-header">
+          <h3 class="service-panel-title">Curated destinations</h3>
+        </div>
+        <p class="service-panel-desc">
+          Sixteen corporate-ready destinations across India and key global MICE hubs,
+          each with season, duration and infrastructure notes.
+        </p>
+        <span class="service-panel-action">Explore destinations →</span>
+      </a>
+
+      <a href="/destinations" class="service-panel">
+        <div class="service-panel-header">
+          <h3 class="service-panel-title">Turnkey offsites</h3>
+        </div>
+        <p class="service-panel-desc">
+          Ready-built corporate offsite programmes you can adapt — stay, sessions,
+          activities and dinners already costed per delegate.
+        </p>
+        <span class="service-panel-action">View packages →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container">
+    <div class="cta-band" data-reveal>
+      <div class="cta-band-inner">
+        <h2 class="cta-band-title">Tell us what you are planning</h2>
+        <p class="cta-band-desc">
+          Share the group size, rough dates and destination shortlist. We will come back with a
+          costed proposal and the questions worth deciding early.
+        </p>
+        <div class="cluster cluster-center mt-6">
+          <button class="btn btn-primary btn-lg open-rfp-btn" type="button">
+            Request a Proposal
+          </button>
+          <a href="/destinations" class="btn btn-outline btn-lg">Explore Destinations</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

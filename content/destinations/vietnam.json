@@ -1,0 +1,36 @@
+{
+  "slug": "vietnam",
+  "name": "Vietnam (Da Nang & Hoi An)",
+  "region": "international",
+  "country": "Vietnam",
+  "hero_image": "/static/images/baku.png",
+  "card_image": "/static/images/baku.png",
+  "tagline": "Coastal convention luxury & UNESCO heritage offsites",
+  "intro": "Fast-growing corporate offsite destination featuring pristine beaches, modern convention hotels, and heritage lantern-lit dinners.",
+  "best_season": "February to August",
+  "typical_duration": "4N / 5D",
+  "partner_url": "https://www.holidaymyplanet.com/vietnam",
+  "featured": false,
+  "sort_order": 16,
+  "category": "long-haul",
+  "category_label": "Long-haul",
+  "good_for": [
+    "Incentive",
+    "Offsite",
+    "Budget-friendly"
+  ],
+  "best_months": "October to April",
+  "access": "Flights from Delhi, generally with one stop.",
+  "highlights": [
+    "Still unfamiliar to most Indian delegates, so it feels like a genuine reward rather than a repeat trip.",
+    "Costs land well below comparable beach and city destinations at the same standard.",
+    "Multi-centre itineraries work well, combining a city working leg with a coastal reward leg."
+  ],
+  "planning_note": "The country is long and weather differs sharply north to south in the same week. A multi-city itinerary needs the sequence chosen around that, not around flight price.",
+  "image_is_placeholder": true,
+  "_image_note": "TODO(ethpl): card_image/hero_image currently reuse another destination's photo. Supply a real photograph of this destination, then remove image_is_placeholder.",
+  "ideal_group_size": "",
+  "gallery": [],
+  "short_name": "Vietnam",
+  "_short_name_note": "Used in <title> and meta description only, where the full name would exceed what a search result shows. The page heading uses `name`."
+}

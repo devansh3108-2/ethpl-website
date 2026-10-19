@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {# The site-wide `noindex, nofollow` that used to sit here made every page
+     unrankable. Admin templates carry their own noindex and the /admin routes
+     also send an X-Robots-Tag header, so nothing public is exposed by this. #}
+  <title>{% block title %}MICE Company in Delhi — Events & Group Travel | {{ brand.name | default('ETHPL') }}{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Corporate offsites, conferences, incentive trips and group travel, planned end to end from Delhi across India and abroad. Itemised proposal in 24-48 hours.{% endblock %}">
+  {% set canonical_url = site_base_url ~ (canonical_path | default('/')) %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="redirect-base" content="{{ redirect_base_url | default('https://www.ethpl.com') }}">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ brand.name | default('ETHPL') }}">
+  <meta property="og:title" content="{{ self.title() }}">
+  <meta property="og:description" content="{{ self.meta_description() }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  {# og:image was the 139x168 portrait logo. Every platform crops a share card
+     to roughly 1.91:1, so that arrived letterboxed and unreadable. This is a
+     purpose-made 1200x630 card. #}
+  <meta property="og:image" content="{{ site_base_url }}/static/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ brand.name | default('ETHPL') }} — {{ brand.tagline | default('Corporate Travel & Event Planning') }}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  {# The site shipped with no favicon at all: a blank page icon in every tab
+     and nothing in a bookmark. #}
+  <link rel="icon" href="/static/images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/static/images/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+  <meta name="theme-color" content="#2F5D27">
+
+  <!-- Organisation schema. Phone and address are emitted only once the real
+       values are filled into content/site.json, since wrong NAP data in
+       structured markup actively hurts local ranking. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "{{ brand.name | default('ETHPL') }}",
+    "legalName": "{{ brand.fullName | default('ETHPL Travel & Hospitality Pvt Ltd') }}",
+    "description": "{{ self.meta_description() }}",
+    "url": "{{ site_base_url }}/",
+    "logo": "{{ site_base_url }}/static/images/logo.png",
+    "areaServed": "IN"
+    {%- if brand.phone %},
+    "telephone": "{{ brand.phone }}"
+    {%- endif %}
+    {%- if brand.email %},
+    "email": "{{ brand.email }}"
+    {%- endif %}
+    {%- if brand.address %},
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ brand.address }}",
+      "addressLocality": "New Delhi",
+      "addressCountry": "IN"
+    }
+    {%- endif %}
+  }
+  </script>
+
+  {# Two fonts, per the brand sheet: Poppins for headings, DM Sans for body.
+     JetBrains Mono was dropped — a third web font cost every page a request on
+     mobile and was used for almost nothing. display=swap so text paints in a
+     fallback immediately rather than staying invisible while fonts load. #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="{{ asset_url('css/theme.css') }}">
+  <link rel="stylesheet" href="{{ asset_url('css/layout.css') }}">
+  <link rel="stylesheet" href="{{ asset_url('css/components.css') }}">
+  <link rel="stylesheet" href="{{ asset_url('css/animations.css') }}">
+  {#- Breadcrumbs, emitted in one place and fed by the route.
+
+      Google needs at least two levels for this to mean anything, so a page
+      that is only "Home" emits nothing rather than a one-item list. The
+      homepage and /thank-you therefore have none, which is correct. -#}
+  {% if breadcrumbs and breadcrumbs | length > 1 %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {%- for crumb in breadcrumbs %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "name": {{ crumb.name | tojson }},
+        "item": "{{ site_base_url }}{{ crumb.path }}"
+      }{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    ]
+  }
+  </script>
+  {% endif %}
+
+  {# Lets a single page add head tags of its own — /thank-you uses it to opt
+     itself out of indexing without reintroducing a site-wide noindex. #}
+  {% block head_extra %}{% endblock %}
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  {# Top bar used to lead with "Direct Booking" links straight out to the
+     partner domain — the most prominent links on the page sent visitors to
+     another company before they ever enquired. It now carries our own contact
+     details, which is what a corporate buyer is looking for up there. #}
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-service">
+        {{ brand.tagline | default('Corporate Travel & Event Planning') }}
+      </div>
+      <div class="top-bar-links">
+        <div class="top-bar-ext-cluster">
+          {% if brand.phone %}
+          <a href="tel:{{ brand.phone | replace(' ', '') }}" class="top-ext-link" data-track="phone-click">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>{{ brand.phone }}</span>
+          </a>
+          {% endif %}
+          {% if brand.phone and brand.email %}<span class="top-ext-sep">•</span>{% endif %}
+          {% if brand.email %}
+          <a href="mailto:{{ brand.email }}" class="top-ext-link">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>{{ brand.email }}</span>
+          </a>
+          {% endif %}
+          {% if not brand.phone and not brand.email %}
+          <span class="top-bar-ext-label">Delhi NCR · India &amp; International</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation (F-49) -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      {% set lockup_variant = 'header' %}{% set lockup_link = true %}
+      {% include 'partials/brand_lockup.html' %}
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="primary-nav">
+          <li class="nav-item-dropdown">
+            {# Was an <a href="#"> with role="button" — a dead anchor that
+               jumped to the top of the page if the JS failed. A real button is
+               what it always was semantically, and needs no placeholder href. #}
+            <button type="button" class="nav-link nav-dropdown-toggle {% if active_page == 'services' %}active{% endif %}" aria-haspopup="true" aria-expanded="false">
+              Services <span class="dropdown-caret" aria-hidden="true">▾</span>
+            </button>
+            <ul class="nav-dropdown-menu" aria-label="Services submenu">
+              {% for service in (nav_services | default([])) %}
+              <li><a href="/services/{{ service.slug }}" class="dropdown-item">{{ service.short_name | default(service.name) }}</a></li>
+              {% endfor %}
+              <li><a href="/services" class="dropdown-item"><strong>All services</strong></a></li>
+            </ul>
+          </li>
+          <li><a href="/destinations" class="nav-link {% if active_page == 'destinations' %}active{% endif %}">Destinations</a></li>
+          <li class="nav-item-dropdown">
+            <button type="button" class="nav-link nav-dropdown-toggle {% if active_page == 'who-we-serve' %}active{% endif %}" aria-haspopup="true" aria-expanded="false">
+              Who We Serve <span class="dropdown-caret" aria-hidden="true">▾</span>
+            </button>
+            <ul class="nav-dropdown-menu" aria-label="Who we serve submenu">
+              {% for audience in (nav_audiences | default([])) %}
+              <li><a href="/who-we-serve/{{ audience.slug }}" class="dropdown-item">{{ audience.nav_label | default(audience.name) }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li><a href="/mice" class="nav-link {% if active_page == 'mice' %}active{% endif %}">MICE Desk</a></li>
+          <li><a href="/blog" class="nav-link {% if active_page == 'blog' %}active{% endif %}">Blog</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        {# The brief asks for a pulsing quote button. The pulse is a shadow
+           animation on a real <button>, so it costs no layout work and stops
+           entirely under prefers-reduced-motion. #}
+        <button class="btn btn-primary btn-sm btn-pulse open-rfp-btn" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Get a free quote
+        </button>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="primary-nav" type="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Sticky Quick Quote Bar -->
+  <aside class="sticky-rfp-bar" id="sticky-rfp-bar" aria-label="Quick Proposal Assistant">
+    <div class="container sticky-rfp-inner">
+      <div class="sticky-rfp-text">
+        <div>
+          <h5>Planning an upcoming corporate offsite or annual meet?</h5>
+          <p>Request verified venue blocks, turnkey itineraries, and logistics support.</p>
+        </div>
+      </div>
+      <div class="cluster">
+        <a href="/destinations" class="btn btn-ghost btn-sm">Browse Destinations</a>
+        <button class="btn btn-primary btn-sm open-rfp-btn" type="button">Request Proposal</button>
+        <button class="sticky-rfp-dismiss" id="dismiss-sticky-rfp" aria-label="Dismiss notification bar" type="button">&times;</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-footer-wrap">
+            {% set lockup_variant = 'footer' %}{% set lockup_link = false %}
+            {% include 'partials/brand_lockup.html' %}
+          </div>
+          <p class="footer-brand-desc">
+            Corporate event planning and group travel, handled end to end from Delhi. Offsites, conferences, incentive trips and educational tours across India and abroad.
+          </p>
+          <!-- TODO(ethpl): add GST / MSME-Udyam / IATA / TAAI / IATO / ICPB badges here
+               once certificate numbers and image files are supplied. Do not add a badge
+               without a verifiable number behind it. -->
+        </div>
+
+        <div class="footer-col">
+          <h4>Destinations</h4>
+          <ul class="footer-links">
+            {# These used to point at /hotels?dest=… — a route that no longer exists and
+               never filtered by that parameter anyway. They now link to the live
+               destination pages. #}
+            <li><a href="/destinations">All Destinations</a></li>
+            {% for dest in (footer_destinations | default([])) %}
+            <li><a href="/destinations#{{ dest.slug }}">{{ dest.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="/mice">MICE &amp; Events Desk</a></li>
+            <li><a href="/destinations">Corporate Destinations</a></li>
+            <li><a href="/services/visa">Corporate E-Visa Desk</a></li>
+            <li><a href="/services/holidays">Holiday &amp; Leisure Travel</a></li>
+            <li><a href="/blog">Guides &amp; Travelogues</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p class="footer-address">
+            <strong>{{ brand.fullName | default('ETHPL Travel & Hospitality Pvt Ltd') }}</strong><br>
+            {{ brand.address | default('New Delhi, India') }}
+          </p>
+          <ul class="footer-links">
+            {% if brand.phone %}
+            <li><a href="tel:{{ brand.phone | replace(' ', '') }}" data-track="phone-click">{{ brand.phone }}</a></li>
+            {% endif %}
+            {% if brand.whatsapp %}
+            <li><a href="https://wa.me/{{ brand.whatsapp | replace(' ', '') | replace('+', '') }}" target="_blank" rel="noopener noreferrer" data-track="whatsapp-click">WhatsApp us</a></li>
+            {% endif %}
+            {% if brand.email %}
+            <li><a href="mailto:{{ brand.email }}">{{ brand.email }}</a></li>
+            {% endif %}
+            {% if not brand.phone and not brand.email %}
+            <li><button class="footer-link-btn open-rfp-btn" type="button">Request a proposal</button></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Official Partner Disclosure (accountability / transparency) -->
+      <aside class="footer-partner-strip" aria-label="Official booking partner disclosure">
+        <a href="https://www.holidaymyplanet.com/?utm_source=ethpl&utm_medium=catalogue&utm_campaign=footer-partner-disclosure" target="_blank" rel="noopener noreferrer" class="footer-partner-mark" aria-label="Holiday My Planet — official booking partner">
+          {% set img_src = '/static/images/hmp-logo.png' %}
+          {% set img_alt = 'Holiday My Planet' %}
+          {% set img_width = 120 %}{% set img_height = 59 %}
+          {% set img_loading = 'lazy' %}{% set img_class = none %}
+          {% include 'partials/picture.html' %}
+        </a>
+        <div class="footer-partner-text">
+          <span class="footer-partner-label">Official Booking Partner</span>
+          <p>
+            Flight, hotel, holiday, and visa transactions on this catalogue are operated and fulfilled by our official travel partner,
+            <a href="https://www.holidaymyplanet.com/?utm_source=ethpl&utm_medium=catalogue&utm_campaign=footer-partner-disclosure" target="_blank" rel="noopener noreferrer">Holiday My Planet</a>
+            (holidaymyplanet.com). ETHPL curates the corporate MICE catalogue and handles proposal requests; all retail bookings and payments are processed securely on the partner platform.
+          </p>
+        </div>
+      </aside>
+
+      <div class="footer-bottom">
+        <div>© {{ current_year }} {{ brand.fullName | default('ETHPL Travel & Hospitality Pvt Ltd') }}. All rights reserved. In official partnership with Holiday My Planet.</div>
+        {# The "Admin Portal (Demo)" link that used to sit here advertised an
+           unfinished site and invited login attempts. Staff reach /admin
+           directly. #}
+        <div class="footer-legal-links">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms &amp; Conditions</a>
+          <a href="https://www.holidaymyplanet.com/?utm_source=ethpl&utm_medium=catalogue&utm_campaign=footer-partner" target="_blank" rel="noopener noreferrer">Partner Booking Engine</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  {# Rendered only when a WhatsApp number is configured. Many buyers in this
+     market will message before they will fill in a form. #}
+  {% if brand.whatsapp %}
+  <a href="https://wa.me/{{ brand.whatsapp | replace(' ', '') | replace('+', '') }}"
+     target="_blank" rel="noopener noreferrer"
+     class="whatsapp-fab" data-track="whatsapp-click"
+     aria-label="Message us on WhatsApp">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.12-.41-2.13-1.32-.79-.7-1.32-1.57-1.47-1.87-.15-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.63-.93-2.22-.24-.59-.49-.5-.67-.5h-.56c-.2 0-.52.07-.79.37-.27.3-1.03 1.01-1.03 2.46 0 1.45 1.06 2.85 1.2 3.05.15.2 2.08 3.18 5.04 4.46.7.3 1.25.48 1.68.62.7.22 1.35.19 1.86.12.56-.08 1.75-.72 2-1.41.25-.69.25-1.28.17-1.4-.07-.13-.27-.2-.57-.35z"></path><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2 22l5.25-1.38c1.45.79 3.08 1.21 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.92 6.45 17.5 2 12.04 2zm0 18.15c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-3.15.83.84-3.07-.2-.31a8.22 8.22 0 0 1-1.26-4.37c0-4.54 3.7-8.23 8.24-8.23 4.54 0 8.23 3.7 8.23 8.24 0 4.54-3.69 8.25-8.16 8.25z"></path></svg>
+    <span>WhatsApp</span>
+  </a>
+  {% endif %}
+
+  <!-- Accessible RFP Modal Dialog -->
+  <div class="modal-overlay" id="rfp-modal" role="dialog" aria-modal="true" aria-labelledby="rfp-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 id="rfp-modal-title" class="hero-widget-title mb-2">Request a Custom Proposal</h3>
+          <p class="feature-desc">Provide your event parameters to receive indicative venue, accommodation, and itinerary options.</p>
+        </div>
+        <button class="modal-close" id="close-rfp-btn" aria-label="Close Proposal Form" type="button">&times;</button>
+      </div>
+
+      <form id="rfp-form">
+        <div id="rfp-form-feedback" class="sr-only" role="status" aria-live="polite"></div>
+
+        <div class="form-group">
+          <label class="form-label" for="rfp-company-name">Corporate / Organization Name *</label>
+          <input type="text" id="rfp-company-name" name="company_name" class="form-control" placeholder="Your company name" required />
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="rfp-contact-name">Contact Person *</label>
+            <input type="text" id="rfp-contact-name" name="contact_name" class="form-control" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="rfp-contact-info">Work Email / Phone *</label>
+            <input type="text" id="rfp-contact-info" name="contact_info" class="form-control" placeholder="name@company.com" required />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="rfp-org-type">Type of Organisation</label>
+            <select id="rfp-org-type" name="organisation_type" class="form-control">
+              <option value="Corporate">Corporate / Company</option>
+              <option value="School">School</option>
+              <option value="College">College / University</option>
+              <option value="NGO">NGO / Non-profit</option>
+              <option value="Government">Government / PSU</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="rfp-event-type">Type of Event</label>
+            <select id="rfp-event-type" name="event_type" class="form-control">
+              <option value="Corporate Offsite">Corporate offsite / team retreat</option>
+              <option value="Conference">Conference or annual meet</option>
+              <option value="Incentive Trip">Incentive or dealer trip</option>
+              <option value="Exhibition">Exhibition or trade show</option>
+              <option value="Educational Tour">Educational / study tour</option>
+              <option value="Group Travel">Group travel only</option>
+              <option value="Not Sure">Not sure yet</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-3">
+          <div class="form-group">
+            <label class="form-label" for="rfp-destination">Target Destination</label>
+            {# Options are generated from content/destinations/*.json. The old
+               hard-coded list of 8 contradicted the catalogue's real count. #}
+            <select id="rfp-destination" name="destination" class="form-control">
+              <option value="Not decided yet">Not decided yet — advise me</option>
+              {% for dest in (rfp_destinations | default([])) %}
+              <option value="{{ dest.name }}{% if dest.country and dest.country != dest.name %}, {{ dest.country }}{% endif %}">{{ dest.name }}{% if dest.country and dest.country != dest.name %}, {{ dest.country }}{% endif %}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="rfp-travel-window">Dates or Month</label>
+            <input type="text" id="rfp-travel-window" name="travel_window" class="form-control" placeholder="e.g. mid-March, or 12-15 Nov" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="rfp-pax-count">Group Size</label>
+            {# Minimum lowered from 20 to 10: a 20-person floor silently excluded
+               small board retreats and school groups, which are real enquiries. #}
+            <input type="number" id="rfp-pax-count" name="pax_count" class="form-control" value="50" min="10" max="5000" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="rfp-notes">Requirements & Notes (Optional)</label>
+          <textarea id="rfp-notes" name="notes" class="form-control" rows="2" placeholder="e.g. Conference hall setup, banquet preferences, dates..."></textarea>
+        </div>
+
+        <button type="submit" id="rfp-submit-btn" class="btn btn-primary btn-w-full">
+          Submit Proposal Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  {# Analytics load only when an ID is configured, so a developer running
+     locally sends nothing and the site carries no third-party request until
+     the business actually wants measurement. Both are deferred so neither
+     blocks rendering. #}
+  {% if ga4_id %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga4_id }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ ga4_id }}');
+  </script>
+  {% endif %}
+  {% if clarity_id %}
+  <script>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "{{ clarity_id }}");
+  </script>
+  {% endif %}
+  <script src="{{ asset_url('js/reveal.js') }}"></script>
+  <script src="{{ asset_url('js/analytics.js') }}"></script>
+  <script src="{{ asset_url('js/app.js') }}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

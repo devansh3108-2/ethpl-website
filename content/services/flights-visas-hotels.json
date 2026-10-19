@@ -1,0 +1,33 @@
+{
+  "slug": "flights-visas-hotels",
+  "order": 6,
+  "icon": "plane",
+  "name": "Group Flights, Visas & Hotels",
+  "short_name": "Flights, Visas & Hotels",
+  "title": "Group Flights, Bulk Visas & Hotel Blocks | ETHPL",
+  "meta": "Group air fares, bulk visa processing and hotel room blocks for organisations — available on their own, without a full event booking.",
+  "tagline": "The pieces, when you only need the pieces.",
+  "intro": "Not every requirement is an event. Sometimes you have the agenda and the venue sorted and simply need sixty people moved, or forty visas processed, or a block of rooms held. These are available on their own.",
+  "included": [
+    "Group air fares, including phased batches and charter assessment for large movements",
+    "Bulk visa processing with document checklists and status tracking",
+    "Hotel room blocks with a rooming list you control",
+    "Airport and inter-city transfers",
+    "Travel insurance coordination",
+    "One consolidated GST invoice instead of several vendor bills"
+  ],
+  "questions": [
+    [
+      "Can we use this without booking an event?",
+      "Yes. These are standalone services. Plenty of our work is a single workstream for a team that is otherwise self-sufficient."
+    ],
+    [
+      "When is a charter worth considering over block booking?",
+      "It depends on group size, route and how fixed your dates are. It is a real calculation rather than a rule of thumb, and we will show you the comparison for your specific movement."
+    ],
+    [
+      "How long does bulk visa processing take?",
+      "It varies by destination and by season, and consular timelines change. We will give you the current expected window for your destination at the time you ask, not a number from a brochure."
+    ]
+  ]
+}

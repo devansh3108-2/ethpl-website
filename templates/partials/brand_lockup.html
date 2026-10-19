@@ -1,0 +1,40 @@
+{#- The ETHPL logo lockup: mark + wordmark + tagline.
+
+    One definition used by the header, the footer and the admin shell. Before
+    this each place built its own, which is how the site ended up showing three
+    different names next to the same mark.
+
+    Parameters (optional):
+      lockup_variant  "header" (default) | "footer" | "compact"
+      lockup_link     true (default) wraps it in a link to /
+
+    Brand strings come from content/site.json via the `brand` context, so the
+    name and tagline change in one file and follow everywhere.
+-#}
+{%- set variant = lockup_variant | default('header') -%}
+{%- set mark_size = 30 if variant == 'compact' else (38 if variant == 'footer' else 45) -%}
+{%- set mark_height = (mark_size * 132 / 140) | round | int -%}
+
+{%- if lockup_link | default(true) %}
+<a href="/" class="brand-lockup brand-lockup-{{ variant }}" aria-label="{{ brand.name | default('ETHPL') }} homepage">
+{%- else %}
+<span class="brand-lockup brand-lockup-{{ variant }}">
+{%- endif %}
+  <picture>
+    <source srcset="/static/images/logo-mark.webp" type="image/webp">
+    <img src="/static/images/logo-mark.png" alt="" aria-hidden="true"
+         width="{{ mark_size }}" height="{{ mark_height }}"
+         loading="{{ 'lazy' if variant == 'footer' else 'eager' }}"
+         decoding="async" class="brand-lockup-mark" />
+  </picture>
+  <span class="brand-lockup-text">
+    <span class="brand-lockup-name">{{ brand.name | default('ETHPL') }}</span>
+    {%- if variant != 'compact' %}
+    <span class="brand-lockup-tagline">{{ brand.tagline | default('Corporate Travel & Event Planning') }}</span>
+    {%- endif %}
+  </span>
+{%- if lockup_link | default(true) %}
+</a>
+{%- else %}
+</span>
+{%- endif %}

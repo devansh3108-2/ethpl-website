@@ -1,0 +1,34 @@
+{
+  "slug": "rishikesh",
+  "name": "Rishikesh",
+  "region": "india",
+  "country": "India",
+  "hero_image": "/static/images/corbett.png",
+  "card_image": "/static/images/corbett.png",
+  "tagline": "Riverside mindfulness, white-water rafting & leadership",
+  "intro": "Luxury wellness resorts along the sacred Ganges offering yoga, meditation, river rafting, and outdoor executive development sessions.",
+  "best_season": "September to April",
+  "typical_duration": "2N / 3D",
+  "partner_url": "https://www.holidaymyplanet.com/rishikesh",
+  "featured": false,
+  "sort_order": 13,
+  "category": "adventure",
+  "category_label": "Adventure",
+  "good_for": [
+    "Offsite",
+    "Educational",
+    "Budget-friendly"
+  ],
+  "best_months": "September to April",
+  "access": "Roughly five and a half hours by road from Delhi, or fly to Dehradun.",
+  "highlights": [
+    "Rafting and river-camp formats produce the kind of shared challenge that team-building workshops only simulate.",
+    "Riverside properties handle a mixed programme well: a working morning, an activity afternoon, a bonfire evening.",
+    "Drivable from Delhi, so the budget goes into the programme rather than air fares."
+  ],
+  "planning_note": "Rafting is suspended during the monsoon and river conditions vary by season. Confirm the activity window before promising it in an itinerary.",
+  "image_is_placeholder": true,
+  "_image_note": "TODO(ethpl): card_image/hero_image currently reuse another destination's photo. Supply a real photograph of this destination, then remove image_is_placeholder.",
+  "ideal_group_size": "",
+  "gallery": []
+}

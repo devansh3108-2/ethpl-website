@@ -1,0 +1,33 @@
+{
+  "slug": "bangkok",
+  "name": "Bangkok",
+  "region": "international",
+  "country": "Thailand",
+  "hero_image": "/static/images/bangkok.png",
+  "card_image": "/static/images/bangkok.png",
+  "tagline": "High-volume dealer conventions & vibrant mega-events",
+  "intro": "Massive convention halls like IMPACT Arena, seamless visa exemption for Indian passport holders, and dynamic riverfront networking.",
+  "best_season": "November to February",
+  "typical_duration": "3N / 4D",
+  "partner_url": "https://www.holidaymyplanet.com/bangkok",
+  "featured": false,
+  "sort_order": 6,
+  "category": "short-haul",
+  "category_label": "Short-haul",
+  "good_for": [
+    "Conference",
+    "Incentive",
+    "Offsite",
+    "Budget-friendly"
+  ],
+  "best_months": "November to February",
+  "access": "Direct flights from Delhi, roughly four hours.",
+  "highlights": [
+    "Among the lowest cost per delegate of any international option, which is often what makes a first overseas offsite approvable.",
+    "Deep hotel supply at every standard, so a large group can be accommodated on one property rather than split across three.",
+    "Straightforward entry process and heavy flight capacity from India."
+  ],
+  "planning_note": "City traffic is the hidden cost. A venue twenty minutes away on a map can take an hour at the wrong time, so build the day around location rather than price alone.",
+  "ideal_group_size": "",
+  "gallery": []
+}

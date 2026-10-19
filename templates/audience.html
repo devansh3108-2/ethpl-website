@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}{{ audience.title | default(audience.name ~ ' | ' ~ brand.name) }}{% endblock %}
+
+{% block meta_description %}{{ audience.meta | default(audience.intro) }}{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: var(--spacing-xl);">
+  <div class="container">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ audience.name }}</span>
+    </nav>
+
+    <div class="section-header" data-reveal>
+      <span class="section-tag">Who we serve</span>
+      <h1 class="section-title">{{ audience.heading }}</h1>
+      <p class="section-subtitle">{{ audience.intro }}</p>
+    </div>
+
+    {% if audience.note %}
+    <aside class="legal-notice" role="note" style="max-width: 760px; margin: 0 auto var(--spacing-2xl);">
+      {{ audience.note }}
+    </aside>
+    {% endif %}
+
+    {% if audience.concerns %}
+    <div class="grid-2" data-reveal-group>
+      {% for heading, body in audience.concerns %}
+      <div class="feature-card">
+        <h2 class="feature-title">{{ heading }}</h2>
+        <p class="feature-desc">{{ body }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if audience.formats %}
+    <div style="margin-top: var(--spacing-3xl);">
+      <div class="section-subheading-row">
+        <h2 class="section-subheading">What we typically plan for you</h2>
+      </div>
+      <ul class="dest-detail-list dest-detail-list-check format-list">
+        {% for item in audience.formats %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <div style="margin-top: var(--spacing-3xl);">
+      <div class="section-subheading-row">
+        <h2 class="section-subheading">Services you are most likely to need</h2>
+      </div>
+      <div class="grid-3" data-reveal-group>
+        {% for service in (services | default([]))[:3] %}
+        <a href="/services/{{ service.slug }}" class="service-panel">
+          <div>
+            <h3 class="service-panel-title">{{ service.name }}</h3>
+            <p class="service-panel-desc">{{ service.tagline }}</p>
+          </div>
+          <div class="service-panel-action">Read more <span>→</span></div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="section" style="padding-bottom: 0;">
+      <div class="cta-banner">
+        <div class="cta-content">
+          <h2 class="cta-title">{{ audience.cta }}</h2>
+          <p class="cta-desc">
+            Tell us the rough shape of it and you will have an itemised proposal within
+            24-48 hours. No obligation, and no pressure to commit to a destination yet.
+          </p>
+        </div>
+        <div class="cta-actions">
+          <button class="btn btn-primary btn-lg open-rfp-btn" type="button"
+                  data-organisation-type="{{ audience.org_type | default('') }}">
+            Get a Free Proposal
+          </button>
+          <a href="/destinations" class="btn btn-outline btn-lg"
+             style="color: white; border-color: rgba(255,255,255,0.4);">
+            Browse destinations
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

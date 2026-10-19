@@ -1,0 +1,39 @@
+{
+  "slug": "schools-colleges",
+  "order": 2,
+  "name": "Schools & Colleges",
+  "nav_label": "Schools & Colleges",
+  "title": "Educational Tour Operator, Delhi | ETHPL",
+  "meta": "Educational tours, study trips and industrial visits for schools and colleges from Delhi, with documented supervision ratios and emergency processes.",
+  "heading": "For schools, colleges and institutions",
+  "intro": "A school trip is a safeguarding decision before it is a travel decision. Principals, trip coordinators and parents all need the same question answered: who is responsible, and what happens if something goes wrong. We put that in writing before you confirm anything.",
+  "concerns": [
+    [
+      "Safety is the whole conversation",
+      "Supervision ratios agreed in writing, accommodation vetted for group suitability, verified drivers, and a documented emergency process with escalation contacts for both staff and parents."
+    ],
+    [
+      "Paperwork your board will accept",
+      "A pack covering itinerary, accommodation, transport, supervision and the insurance position — in a form you can take to a committee or send home to parents without rewriting it."
+    ],
+    [
+      "Learning, not just sightseeing",
+      "Itineraries written for a specific year group and objective. For college groups, that includes industrial visits and campus programmes rather than a generic tour."
+    ],
+    [
+      "Budgets families can actually meet",
+      "Per-student costing, and honesty about where the price is driven by season rather than quality. Shifting a trip by three weeks often matters more than changing the destination."
+    ]
+  ],
+  "formats": [
+    "School educational and heritage tours",
+    "College industrial visits and study tours",
+    "Adventure and outdoor-education camps",
+    "Inter-school and inter-college event travel",
+    "Faculty and staff retreats",
+    "Alumni and institutional group travel"
+  ],
+  "cta": "Ask about a school or college trip",
+  "note": "Seasonal note: most school and college travel is planned between October and February. Enquiries for that window are best raised well in advance, because approval cycles and parental consent take longer than the booking itself.",
+  "org_type": "School"
+}

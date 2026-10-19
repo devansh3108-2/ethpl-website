@@ -1,0 +1,458 @@
+{% extends "base.html" %}
+
+{% block title %}MICE Company in Delhi — Events & Group Travel | {{ brand.name | default('ETHPL') }}{% endblock %}
+
+{% block meta_description %}Corporate offsites, conferences, incentive trips and educational tours from Delhi, across India and abroad. Itemised proposal in 24-48 hours.{% endblock %}
+
+{% block head_extra %}
+{% if home.faqs %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for question, answer in home.faqs %}
+    {
+      "@type": "Question",
+      "name": {{ question | tojson }},
+      "acceptedAnswer": { "@type": "Answer", "text": {{ answer | tojson }} }
+    }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+{# ── 1. Hero ───────────────────────────────────────────────────────────────
+   Forest green, per the brand sheet. The leaf ring behind it is a single
+   inline SVG rotating very slowly; it is decorative, hidden from assistive
+   technology, and stops under prefers-reduced-motion. #}
+<section class="hero-forest">
+  <div class="hero-forest-ring" aria-hidden="true">
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="var(--leaf-400)" stroke-opacity="0.22" stroke-width="1.5">
+        <circle cx="200" cy="200" r="150" />
+        <circle cx="200" cy="200" r="110" />
+      </g>
+      {% for i in range(12) %}
+      <ellipse cx="200" cy="50" rx="13" ry="26"
+               fill="var(--leaf-400)" fill-opacity="0.16"
+               transform="rotate({{ i * 30 }} 200 200)" />
+      {% endfor %}
+    </svg>
+  </div>
+
+  <div class="container hero-forest-inner">
+    <div class="hero-forest-copy">
+      <p class="hero-eyebrow-light" data-enter-step="1">{{ home.hero.eyebrow }}</p>
+      <h1 class="hero-forest-title" data-enter-step="2">{{ home.hero.headline }}</h1>
+      <p class="hero-forest-sub" data-enter-step="3">{{ home.hero.subtitle }}</p>
+      <div class="hero-cta-cluster" data-enter-step="4">
+        <button class="btn btn-primary btn-lg btn-pulse open-rfp-btn" type="button">
+          {{ home.hero.primary_cta | default('Plan my event') }}
+        </button>
+        <a href="/destinations" class="btn btn-on-dark btn-lg">
+          {{ home.hero.secondary_cta | default('Explore destinations') }}
+        </a>
+      </div>
+      {% if home.hero.tags %}
+      <ul class="hero-chip-row" data-enter-step="5" aria-label="Who we plan for">
+        {% for tag in home.hero.tags %}
+        <li class="hero-chip">{{ tag }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+
+    {# Two photos the planner actually sees. Each reads from home.hero.photos,
+       which is editable content — the field the admin sets. Until a real photo
+       is supplied a branded placeholder stands in. Both drift gently and zoom
+       slowly: this is the motion the hero carries, in place of moving text. #}
+    <div class="hero-photos" data-enter-step="5">
+      {% for photo in (home.hero.photos | default([]))[:2] %}
+      <figure class="hero-photo hero-photo-{{ loop.index }}">
+        {% if photo.src %}
+        <img src="{{ photo.src }}" alt="{{ photo.alt }}" loading="eager" decoding="async" />
+        {% else %}
+        <span class="hero-photo-blank" role="presentation">
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor"
+               stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <circle cx="8.5" cy="10" r="1.6"></circle>
+            <path d="M21 16l-5-5L5 19"></path>
+          </svg>
+          <span>Your photo here</span>
+        </span>
+        {% endif %}
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+
+</section>
+
+{# ── 2. Client logo strip ─────────────────────────────────────────────────
+   Rendered only when content/clients/ holds a file. While it is empty the
+   whole band is absent — a strip of grey placeholder boxes tells a visitor
+   the company has no clients. #}
+{% if clients %}
+<section class="logo-strip" aria-label="Organisations we have worked with">
+  <div class="logo-strip-track">
+    {# Duplicated once so the marquee can loop seamlessly. The copy is hidden
+       from assistive technology to avoid reading every name twice. #}
+    {% for pass_index in [1, 2] %}
+    <ul class="logo-strip-row" {% if pass_index == 2 %}aria-hidden="true"{% endif %}>
+      {% for client in clients %}
+      <li><img src="{{ client.logo }}" alt="{{ client.name }}" height="38" loading="lazy" /></li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{# ── 3. Stat cards ────────────────────────────────────────────────────────
+   Only non-draft stats reach here; see ContentRepository.home_stats. The
+   band is hidden rather than shown half-empty. #}
+{% if stats | length >= 2 %}
+<section class="section section-tight">
+  <div class="container">
+    <div class="stat-grid" data-reveal-group>
+      {% for stat in stats %}
+      <div class="stat-card">
+        <span class="stat-card-value">{{ stat.value }}</span>
+        <span class="stat-card-label">{{ stat.label }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ── 4. What we offer in MICE — four pillars ───────────────────────────────
+   Laid out M · I · C · E. Each pillar links to its service page and lists the
+   event types it covers (pulled from that service's own "what's included", so
+   nothing here is a claimed past event). The giant letter behind each column
+   is decorative. Educational tours and the à-la-carte desk are linked beneath. #}
+<section class="section section-mice" id="services">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="section-tag">What we plan</span>
+      <h2 class="section-title">Everything in <span class="mice-word">MICE</span>, under one team</h2>
+      <p class="section-subtitle">
+        Meetings, incentives, conferences and exhibitions — any one on its own,
+        or the whole programme on a single itemised invoice.
+      </p>
+    </div>
+
+    <div class="mice-grid" data-reveal-group>
+      {% for pillar in (home.mice_pillars | default([])) %}
+      <a href="/services/{{ pillar.slug }}" class="mice-pillar hover-lift">
+        <span class="mice-pillar-letter" aria-hidden="true">{{ pillar.letter }}</span>
+        <div class="mice-pillar-head">
+          <h3>{{ pillar.title }}</h3>
+          <p>{{ pillar.subtitle }}</p>
+        </div>
+        <ul class="mice-pillar-chips">
+          {% for chip in pillar.chips %}
+          <li>{{ chip }}</li>
+          {% endfor %}
+        </ul>
+        <span class="mice-pillar-action">See more <span aria-hidden="true">→</span></span>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="mice-grid-foot" data-reveal>
+      Also planned à la carte:
+      <a href="/services/educational-tours">Educational &amp; group tours</a>
+      <span class="mice-foot-sep" aria-hidden="true">·</span>
+      <a href="/services/flights-visas-hotels">Group flights, visas &amp; hotels</a>
+    </p>
+  </div>
+</section>
+
+{# ── 5. Destinations, Domestic / International tabs ───────────────────── #}
+<section class="section section-alt" id="destinations">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="section-tag">Destinations</span>
+      <h2 class="section-title">Where corporate groups are heading</h2>
+      <p class="section-subtitle">
+        {{ destination_count }} destinations across India and abroad, each with its
+        best months, how you reach it from Delhi, and what to watch for.
+      </p>
+    </div>
+
+    <div class="destinations-filter-wrap" data-reveal>
+      <div class="segmented-control" role="tablist" aria-label="Filter destinations">
+        <button class="segmented-btn active" type="button" role="tab" aria-selected="true"
+                aria-controls="home-dest-grid" data-home-region="india">Domestic</button>
+        <button class="segmented-btn" type="button" role="tab" aria-selected="false"
+                aria-controls="home-dest-grid" data-home-region="international">International</button>
+      </div>
+    </div>
+
+    <div class="grid-4" id="home-dest-grid" data-reveal-group>
+      {% for dest in home_destinations %}
+      <a href="/destinations/{{ dest.slug }}" class="dest-tile hover-lift"
+         data-home-dest-region="{{ dest.region }}"
+         {% if dest.region != 'india' %}hidden{% endif %}>
+        <div class="dest-tile-media">
+          {% if dest.card_image and not dest.image_is_placeholder %}
+          {% set img_src = dest.card_image %}
+          {% set img_alt = dest.name ~ ', ' ~ dest.country %}
+          {% set img_width = 320 %}{% set img_height = 200 %}
+          {% set img_loading = 'lazy' %}{% set img_class = none %}
+          {% include 'partials/picture.html' %}
+          {% else %}
+          {# No photograph of this destination held yet. #}
+          <div class="dest-tile-blank" role="presentation"></div>
+          {% endif %}
+        </div>
+        <div class="dest-tile-body">
+          <h3>{{ dest.name }}</h3>
+          <p>{{ dest.tagline }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="section-action-center">
+      <a href="/destinations" class="btn btn-outline btn-lg">
+        View all {{ destination_count }} destinations
+      </a>
+    </div>
+  </div>
+</section>
+
+{# ── 6. Why choose ETHPL — checklist beside a branded panel ───────────────
+   A Why-Choose-Us list read straight down the left, each point ticked, with a
+   branded summary panel on the right. Points come from site.json → why_us,
+   with drafts already filtered server-side. #}
+<section class="section why-choose" id="why-ethpl">
+  <div class="container">
+    <div class="why-choose-grid">
+      <div class="why-choose-copy" data-reveal>
+        <span class="section-tag">Why {{ brand.name | default('ETHPL') }}</span>
+        <h2 class="section-title">Why organisations choose us</h2>
+        <p class="section-subtitle">
+          What changes when one team owns the whole event instead of four
+          vendors owning a piece each.
+        </p>
+        <ul class="why-check-list" data-reveal-group>
+          {% for point in (why_us | default([])) %}
+          <li class="why-check">
+            <span class="why-check-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                   stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <span class="why-check-text">
+              <strong>{{ point.title }}</strong>
+              <span>{{ point.description | replace('{destination_count}', destination_count | string) }}</span>
+            </span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <aside class="why-choose-panel" data-reveal>
+        <div class="why-panel-ring" aria-hidden="true">
+          <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="var(--leaf-400)" stroke-opacity="0.26" stroke-width="1.5">
+              <circle cx="200" cy="200" r="150" />
+              <circle cx="200" cy="200" r="112" />
+            </g>
+            {% for i in range(12) %}
+            <ellipse cx="200" cy="54" rx="12" ry="24"
+                     fill="var(--leaf-400)" fill-opacity="0.18"
+                     transform="rotate({{ i * 30 }} 200 200)" />
+            {% endfor %}
+          </svg>
+        </div>
+        <div class="why-panel-card">
+          <span class="why-panel-eyebrow">The ETHPL difference</span>
+          <p class="why-panel-line">One team. One invoice.<br>Someone of ours on the ground.</p>
+          <ul class="why-panel-points">
+            <li>A named manager, first call to return flight</li>
+            <li>An itemised, per-delegate proposal in 24–48 hours</li>
+            <li>GST-compliant, procurement-ready paperwork</li>
+          </ul>
+          <a href="#enquire" class="btn btn-primary btn-pulse open-rfp-btn">Get a free quote</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{# ── 7. How it works ─────────────────────────────────────────────────── #}
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="section-tag">How it works</span>
+      <h2 class="section-title">From a two-minute brief to a finished event</h2>
+    </div>
+
+    <ol class="steps-row" data-reveal-group>
+      {% for step in (home.how_it_works | default([])) %}
+      <li class="step-card">
+        <span class="step-card-n" aria-hidden="true">{{ step.n }}</span>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.body }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+{# ── 8. Testimonials ─────────────────────────────────────────────────────
+   Hidden entirely while content/testimonials/ is empty. An invented quote is
+   the most damaging thing that could appear on this site, so there is no
+   placeholder path here at all. #}
+{% if testimonials %}
+<section class="section section-alt" id="testimonials">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="section-tag">In their words</span>
+      <h2 class="section-title">What clients say</h2>
+    </div>
+    <div class="grid-3" data-reveal-group>
+      {% for item in testimonials %}
+      <figure class="testimonial-card">
+        <blockquote>{{ item.quote }}</blockquote>
+        <figcaption>
+          {% if item.photo %}
+          <img src="{{ item.photo }}" alt="" width="44" height="44" loading="lazy" />
+          {% endif %}
+          <span>
+            <strong>{{ item.name }}</strong>
+            {% if item.role %}<span>{{ item.role }}{% if item.organisation %}, {{ item.organisation }}{% endif %}</span>
+            {% elif item.organisation %}<span>{{ item.organisation }}</span>{% endif %}
+          </span>
+        </figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ── 9. FAQ, feeding FAQPage schema in head ──────────────────────────── #}
+{% if home.faqs %}
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="section-tag">Questions</span>
+      <h2 class="section-title">Before you enquire</h2>
+    </div>
+    <div class="faq-list faq-list-wide" data-reveal>
+      {% for question, answer in home.faqs %}
+      <details class="faq-item">
+        <summary>{{ question }}</summary>
+        <p>{{ answer }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ── 10. Enquiry band ──────────────────────────────────────────────────── #}
+<section class="section" id="enquire">
+  <div class="container">
+    <div class="enquire-card">
+      <div class="enquire-copy">
+        <h2>Tell us about your event</h2>
+        <p>
+          Rough dates, how many people, and what it needs to achieve. You will have
+          an itemised proposal within 24-48 hours. No obligation.
+        </p>
+        <ul class="enquire-contact">
+          {% if brand.phone %}
+          <li>
+            <span>Call</span>
+            <a href="tel:{{ brand.phone | replace(' ', '') }}" data-track="phone-click">{{ brand.phone }}</a>
+          </li>
+          {% endif %}
+          {% if brand.whatsapp %}
+          <li>
+            <span>WhatsApp</span>
+            <a href="https://wa.me/{{ brand.whatsapp | replace(' ', '') | replace('+', '') }}"
+               target="_blank" rel="noopener noreferrer" data-track="whatsapp-click">Message us</a>
+          </li>
+          {% endif %}
+          {% if brand.email %}
+          <li><span>Email</span> <a href="mailto:{{ brand.email }}">{{ brand.email }}</a></li>
+          {% endif %}
+          {% if brand.address %}
+          <li><span>Office</span> {{ brand.address }}</li>
+          {% endif %}
+          {% if not brand.phone and not brand.email %}
+          {# TODO(ethpl): fill brand.phone / brand.whatsapp / brand.email in
+             content/site.json. Until then this card shows no way to reach you
+             other than the form, which costs enquiries. #}
+          <li>Use the form and we will come back to you the same working day.</li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <div class="enquire-form-side">
+        <h3>Start here</h3>
+        <p class="meta-note">Takes about twenty seconds.</p>
+        <button class="btn btn-primary btn-lg btn-w-full btn-pulse open-rfp-btn" type="button">
+          Get a free quote
+        </button>
+        <p class="enquire-chip-intro">Or pick what you are planning:</p>
+        <div class="chip-row">
+          {# Each chip opens the enquiry form with that event type already
+             selected, so the visitor starts a step in. #}
+          {% for label, value in [
+            ('Conference', 'Conference'),
+            ('Offsite', 'Corporate Offsite'),
+            ('Incentive trip', 'Incentive Trip'),
+            ('Educational tour', 'Educational Tour'),
+            ('Exhibition', 'Exhibition')
+          ] %}
+          <button class="chip open-rfp-btn" type="button" data-event-type="{{ value }}">{{ label }}</button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+/* Domestic / International tabs on the homepage destination grid.
+   Server-rendered with the domestic set visible, so the default view needs no
+   JavaScript at all and the tiles are in the HTML for crawlers either way. */
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('[data-home-region]');
+  const tiles = document.querySelectorAll('[data-home-dest-region]');
+  if (!tabs.length || !tiles.length) return;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const region = tab.getAttribute('data-home-region');
+      tabs.forEach(other => {
+        const isActive = other === tab;
+        other.classList.toggle('active', isActive);
+        other.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+      /* `hidden` rather than display:none so the tiles are properly removed
+         from the accessibility tree, not just visually gone. */
+      tiles.forEach(tile => {
+        tile.hidden = tile.getAttribute('data-home-dest-region') !== region;
+      });
+    });
+  });
+});
+</script>
+{% endblock %}

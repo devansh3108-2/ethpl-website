@@ -1,0 +1,33 @@
+{
+  "slug": "meetings-offsites",
+  "order": 1,
+  "icon": "users",
+  "name": "Meetings & Corporate Offsites",
+  "short_name": "Meetings & Offsites",
+  "title": "Corporate Offsite Planning from Delhi | ETHPL",
+  "meta": "End-to-end corporate offsite and team retreat planning from Delhi — venue, stay, agenda support and team activities across India and abroad.",
+  "tagline": "Leadership retreats and team offsites, planned end to end.",
+  "intro": "An offsite only works if nobody in the room is thinking about logistics. We take the venue, the stay, the movement and the activities off your plate so the agenda is the only thing your team has to run.",
+  "included": [
+    "Venue and hotel selection matched to your agenda, not just your budget",
+    "Meeting rooms, breakout spaces and AV specified against your session plan",
+    "Airport transfers, inter-venue coaches and a published movement plan",
+    "Team activities chosen for your group rather than a standard menu",
+    "An on-ground manager present for the duration",
+    "One itemised invoice, GST compliant"
+  ],
+  "questions": [
+    [
+      "How far ahead should we start?",
+      "Six to eight weeks is comfortable for a domestic offsite. For December and January, or anywhere during wedding season, start ten to twelve weeks out — the constraint is venue availability, not our turnaround."
+    ],
+    [
+      "What group sizes do you handle?",
+      "From around ten people upward. Small leadership retreats get the same planning attention as large programmes; they are often harder to get right because the setting carries more of the weight."
+    ],
+    [
+      "Can you work to a fixed per-person budget?",
+      "Yes, and it is the most useful thing you can give us. Tell us the per-delegate ceiling and we will come back with what is genuinely achievable at that number rather than a proposal you have to negotiate down."
+    ]
+  ]
+}

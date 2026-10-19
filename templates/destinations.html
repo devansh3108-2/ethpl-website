@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+
+{% block title %}Corporate Offsite Destinations, India & Abroad | {{ brand.name | default('ETHPL') }}{% endblock %}
+
+{% block meta_description %}{{ destinations | length }} corporate event destinations across India and abroad, each with its best months, access from Delhi and what to watch for.{% endblock %}
+
+{% block content %}
+<section class="section section-pad-top">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="section-tag">Browse & Discover</span>
+      <h1 class="section-title">Curated Corporate Destinations</h1>
+      <p class="section-subtitle">
+        Explore hand-selected convention hubs, beachfront conclave resorts, and wilderness strategy retreats. Detailed package booking continues on our partner portal.
+      </p>
+    </div>
+
+    <!-- Segmented Filter Control (F-46) -->
+    <div class="destinations-filter-wrap">
+      <div class="segmented-control" role="tablist" aria-label="Filter destinations by region">
+        <button class="segmented-btn active" data-filter="all" role="tab" aria-selected="true" type="button">
+          All Destinations ({{ destinations | length }})
+        </button>
+        <button class="segmented-btn" data-filter="india" role="tab" aria-selected="false" type="button">
+          Domestic / India
+        </button>
+        <button class="segmented-btn" data-filter="international" role="tab" aria-selected="false" type="button">
+          International
+        </button>
+      </div>
+
+      <div class="segmented-control segmented-control-secondary" role="tablist" aria-label="Filter destinations by what they suit">
+        <button class="segmented-btn active" data-good-filter="all" role="tab" aria-selected="true" type="button">Any purpose</button>
+        <button class="segmented-btn" data-good-filter="offsite" role="tab" aria-selected="false" type="button">Offsites</button>
+        <button class="segmented-btn" data-good-filter="incentive" role="tab" aria-selected="false" type="button">Incentive trips</button>
+        <button class="segmented-btn" data-good-filter="conference" role="tab" aria-selected="false" type="button">Conferences</button>
+        <button class="segmented-btn" data-good-filter="educational" role="tab" aria-selected="false" type="button">Educational</button>
+        <button class="segmented-btn" data-good-filter="budget-friendly" role="tab" aria-selected="false" type="button">Budget-friendly</button>
+      </div>
+    </div>
+
+    <!-- Featured Bento Band (F-54 / F-46) -->
+    <div class="mb-12">
+      <div class="section-subheading-row">
+        <h2 class="section-subheading">Featured Convention & Offsite Hubs</h2>
+        <span class="meta-note">Hand-curated for enterprise scale & seamless connectivity</span>
+      </div>
+
+      <div class="bento-grid" data-reveal-group>
+        {% for dest in featured_destinations %}
+        {# These were outbound links to the partner domain, so browsing
+           destinations handed each lead away. Now that every destination has
+           its own page, the card links there — it keeps the visitor on the
+           site and gives the detail page the internal links it needs to rank. #}
+        <a href="/destinations/{{ dest.slug }}"
+           class="bento-card bento-{{ dest.bento_size | default('1x1') }}"
+           data-region="{{ dest.region }}"
+           data-good-for="{{ (dest.good_for | default([])) | join(',') | lower }}"
+           aria-label="{{ dest.name }}, {{ dest.country }} — {{ dest.tagline }}">
+          {% if dest.card_image and not dest.image_is_placeholder %}
+          {% set img_src = dest.card_image %}
+          {% set img_alt = dest.name ~ ', ' ~ dest.country %}
+          {% set img_width = 512 %}{% set img_height = 288 %}
+          {% set img_loading = 'lazy' %}{% set img_class = 'bento-img' %}
+          {% include 'partials/picture.html' %}
+          <div class="bento-scrim"></div>
+          {% else %}
+          {# No photograph of this destination held. The design system's
+             imageless shading is used rather than another place's photo. #}
+          <div class="bento-img bento-img-blank" role="presentation"></div>
+          {% endif %}
+          <div class="bento-content">
+            <div class="bento-tag-row">
+              <span class="badge {% if dest.region == 'india' %}badge-stone{% else %}badge-orange{% endif %}">
+                {{ dest.country }}
+              </span>
+            </div>
+            <h3 class="bento-title">{{ dest.name }}</h3>
+            <p class="bento-tagline">{{ dest.tagline }}</p>
+            <div class="bento-meta">
+              <span><strong>Season:</strong> {{ dest.best_season }}</span>
+              <span>•</span>
+              <span><strong>Duration:</strong> {{ dest.typical_duration }}</span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Full Destinations Grid -->
+    <div>
+      <div class="section-subheading-row">
+        <h2 class="section-subheading">All Destinations</h2>
+        <span class="meta-note">Select any destination to request a proposal for it</span>
+      </div>
+
+      <div class="grid-3 destinations-grid" id="destinations-container" data-reveal-group>
+        {% for dest in destinations %}
+        <a href="/destinations/{{ dest.slug }}"
+           class="card-destination-portrait"
+           data-region="{{ dest.region }}"
+           data-good-for="{{ (dest.good_for | default([])) | join(',') | lower }}"
+           aria-label="{{ dest.name }}, {{ dest.country }} — {{ dest.tagline }}">
+          <div class="dest-portrait-media">
+            {% if dest.card_image and not dest.image_is_placeholder %}
+            {% set img_src = dest.card_image %}
+            {% set img_alt = dest.name ~ ', ' ~ dest.country %}
+            {% set img_width = 512 %}{% set img_height = 288 %}
+            {% set img_loading = 'lazy' %}{% set img_class = 'dest-portrait-img' %}
+            {% include 'partials/picture.html' %}
+            <div class="dest-portrait-scrim"></div>
+            {% else %}
+            <div class="dest-portrait-img dest-portrait-img-blank" role="presentation"></div>
+            {% endif %}
+            <div class="dest-portrait-top">
+              <span class="badge {% if dest.region == 'india' %}badge-stone{% else %}badge-orange{% endif %}">
+                {{ dest.country }}
+              </span>
+              {% if dest.category_label %}
+              <span class="badge badge-green">{{ dest.category_label }}</span>
+              {% endif %}
+            </div>
+            <div class="dest-portrait-bottom">
+              <h3 class="dest-portrait-title">{{ dest.name }}</h3>
+              <p class="dest-portrait-tagline">{{ dest.tagline }}</p>
+              <div class="dest-portrait-meta">
+                <span>{{ dest.best_season }}</span>
+                <span>•</span>
+                <span>{{ dest.typical_duration }}</span>
+              </div>
+              <div class="dest-portrait-action">
+                <span>View {{ dest.name }}</span>
+                <span aria-hidden="true">→</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <div id="destinations-empty-state" class="empty-state-panel" style="display: none;">
+        <h3>No destinations found</h3>
+        <p>No destinations match the selected filter category.</p>
+        <button class="btn btn-outline btn-sm" onclick="filterDestinations('all')" type="button">Show All Destinations</button>
+      </div>
+    </div>
+
+    <!-- Partner Handoff Notice Banner -->
+    <div class="handoff-notice-box mt-16">
+      <div class="handoff-notice-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+      </div>
+      <div>
+        <h4>How pricing works</h4>
+        <p>
+          Seasons and durations shown here are for planning only. Costs depend on your dates, group size and standard of hotel, so we quote each enquiry individually — itemised, within 24-48 hours. Individual self-serve bookings are handled on our partner platform, <strong>holidaymyplanet.com</strong>.
+        </p>
+      </div>
+      <button class="btn btn-primary btn-sm open-rfp-btn" type="button">Get a Free Proposal</button>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  /* Two independent filters — region and purpose — applied together, so
+     "International" plus "Educational" narrows rather than replaces. The two
+     rows are tracked separately because a single active value cannot express
+     a combination. */
+  const regionButtons = document.querySelectorAll('[data-filter]');
+  const purposeButtons = document.querySelectorAll('[data-good-filter]');
+  const cards = document.querySelectorAll('.card-destination-portrait, .bento-card');
+  const emptyState = document.getElementById('destinations-empty-state');
+
+  const state = { region: 'all', purpose: 'all' };
+
+  function markActive(buttons, attribute, value) {
+    buttons.forEach(btn => {
+      const isActive = btn.getAttribute(attribute) === value;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+  }
+
+  function apply() {
+    markActive(regionButtons, 'data-filter', state.region);
+    markActive(purposeButtons, 'data-good-filter', state.purpose);
+
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const regionOk = state.region === 'all'
+        || card.getAttribute('data-region') === state.region;
+      /* data-good-for is a comma-joined lowercase list; split rather than
+         substring-match so "offsite" cannot match some longer tag. */
+      const tags = (card.getAttribute('data-good-for') || '')
+        .split(',').map(tag => tag.trim()).filter(Boolean);
+      const purposeOk = state.purpose === 'all' || tags.includes(state.purpose);
+
+      const show = regionOk && purposeOk;
+      card.style.display = show ? '' : 'none';
+      if (show && card.classList.contains('card-destination-portrait')) {
+        visibleCount++;
+      }
+    });
+
+    if (emptyState) {
+      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+  }
+
+  // Kept global: the empty state's "Show All" button calls it inline.
+  window.filterDestinations = function(filter) {
+    state.region = filter || 'all';
+    state.purpose = 'all';
+    apply();
+  };
+
+  regionButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.region = btn.getAttribute('data-filter') || 'all';
+      apply();
+    });
+  });
+
+  purposeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.purpose = btn.getAttribute('data-good-filter') || 'all';
+      apply();
+    });
+  });
+
+  apply();
+});
+</script>
+{% endblock %}

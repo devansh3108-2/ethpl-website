@@ -1,0 +1,187 @@
+{
+  "hero": {
+    "eyebrow": "MICE AND CORPORATE TRAVEL · DELHI",
+    "headline": "Events and journeys that help your team grow.",
+    "photos": [
+      {
+        "src": "",
+        "alt": "",
+        "_note": "TODO(ethpl): hero photo 1 — a real event photo, portrait ~900x1100. Set 'src' to the image URL/path and 'alt' to a short description. Until a photo is set a branded placeholder shows. This is the field the admin edits."
+      },
+      {
+        "src": "",
+        "alt": "",
+        "_note": "TODO(ethpl): hero photo 2 — a second real event photo, portrait ~900x1100."
+      }
+    ],
+    "subtitle": "Offsites, conferences, incentive trips and educational tours across India and abroad — planned end to end by one team, costed per delegate, with someone of ours on the ground throughout.",
+    "primary_cta": "Plan my event",
+    "secondary_cta": "Explore destinations",
+    "tags": [
+      "Corporates",
+      "Schools",
+      "Colleges",
+      "Non-profits",
+      "Government & PSUs"
+    ],
+    "cards": [
+      {
+        "label": "Annual sales conference",
+        "detail": "180 delegates · Dubai",
+        "icon": "presentation"
+      },
+      {
+        "label": "Leadership retreat",
+        "detail": "24 delegates · Udaipur",
+        "icon": "users"
+      },
+      {
+        "label": "School heritage tour",
+        "detail": "60 students · Jaipur",
+        "icon": "book"
+      }
+    ],
+    "_cards_note": "TODO(ethpl): these three floating cards illustrate the KINDS of event you run. They are format examples, not claimed past events. If you would rather they named real events you have delivered, send the details and they can be made specific."
+  },
+  "stats": [
+    {
+      "id": "destinations",
+      "label": "Destinations covered",
+      "value": "auto:destinations",
+      "note": "Computed from content/destinations — never hard-coded."
+    },
+    {
+      "id": "turnaround",
+      "label": "Itemised proposal turnaround",
+      "value": "24-48 h"
+    },
+    {
+      "id": "events",
+      "label": "Events delivered",
+      "value": "[000+]",
+      "draft": true,
+      "note": "TODO(ethpl): supply the real figure. Withheld from the live site until then."
+    },
+    {
+      "id": "years",
+      "label": "Years of experience",
+      "value": "[00]",
+      "draft": true,
+      "note": "TODO(ethpl): supply the real figure. Withheld from the live site until then."
+    },
+    {
+      "id": "support",
+      "label": "On-trip support",
+      "value": "24/7",
+      "draft": true,
+      "note": "TODO(ethpl): confirm you genuinely staff a 24/7 line before publishing this. It is a promise a delegate will test at 2am."
+    }
+  ],
+  "why_numbered": [
+    {
+      "n": "01",
+      "title": "One point of contact",
+      "body": "A named manager owns your event from the first call to the return flight. No handovers, no repeating yourself to three departments."
+    },
+    {
+      "n": "02",
+      "title": "Quotes you can actually read",
+      "body": "Costs itemised per delegate, so your finance team can approve line by line instead of sending it back for a breakdown."
+    },
+    {
+      "n": "03",
+      "title": "Fully custom plans",
+      "body": "Built around your agenda, group and budget. We do not have a standard package to sell you."
+    },
+    {
+      "n": "04",
+      "title": "On-ground support throughout",
+      "body": "Someone from our team is physically present. When a flight shifts or a hall changes, it is handled on site."
+    },
+    {
+      "n": "05",
+      "title": "Partners we have worked with",
+      "body": "Hotels, transport and venues we have used directly, not sourced from a listing the week before your event."
+    },
+    {
+      "n": "06",
+      "title": "Safety taken seriously",
+      "body": "Written movement plans, verified transport and a documented emergency process — the paperwork school boards and procurement teams ask for."
+    }
+  ],
+  "how_it_works": [
+    {
+      "n": "1",
+      "title": "Share your brief",
+      "body": "Rough dates, how many people, and what the event is meant to achieve. Two minutes is enough to start."
+    },
+    {
+      "n": "2",
+      "title": "Get a tailored proposal",
+      "body": "Two or three costed options within 24-48 hours, itemised per delegate, with a validity date."
+    },
+    {
+      "n": "3",
+      "title": "We book everything",
+      "body": "Venues, stays, flights, visas, transport and activities — contracted and confirmed, on one invoice."
+    },
+    {
+      "n": "4",
+      "title": "You run the event, we run the logistics",
+      "body": "Our manager is on site throughout. You focus on the room, not the coaches."
+    }
+  ],
+  "mice_pillars": [
+    {
+      "letter": "M",
+      "title": "Meetings",
+      "subtitle": "& corporate offsites",
+      "slug": "meetings-offsites",
+      "chips": ["Leadership retreats", "Team offsites", "Board meetings", "Seminars", "Day conferencing", "Sales meetings"]
+    },
+    {
+      "letter": "I",
+      "title": "Incentives",
+      "subtitle": "& reward travel",
+      "slug": "incentive-travel",
+      "chips": ["Reward trips", "Dealer & channel tours", "Gala & awards nights", "Senior leadership offsites", "Phased group air"]
+    },
+    {
+      "letter": "C",
+      "title": "Conferences",
+      "subtitle": "& annual meets",
+      "slug": "conferences",
+      "chips": ["Annual conferences", "Conventions", "Delegate registration", "Stage & AV production", "Speaker logistics"]
+    },
+    {
+      "letter": "E",
+      "title": "Exhibitions",
+      "subtitle": "& events",
+      "slug": "exhibitions",
+      "chips": ["Trade shows", "Expo stands", "Product launches", "Staggered group travel", "Venue-side hotels"]
+    }
+  ],
+  "_mice_pillars_note": "Each pillar links to its service page. Chips are event types drawn from the service pages' own 'what's included' lists — not claimed past events. Educational tours and the flights/visas/hotels desk are linked under the grid.",
+  "faqs": [
+    [
+      "How far ahead should we book?",
+      "Six to eight weeks is comfortable for a domestic programme and ten to twelve for international, mostly because of visas and venue availability rather than our turnaround. If your date is sooner, ask anyway — it is often still possible."
+    ],
+    [
+      "What is the smallest group you will plan for?",
+      "Around ten people. A small board retreat gets the same planning attention as a large conference; it is often harder to get right because the setting carries more of the weight."
+    ],
+    [
+      "Can you work to a fixed per-person budget?",
+      "Yes, and telling us the ceiling up front is the single most useful thing you can do. We will come back with what is genuinely achievable at that number rather than a proposal you have to negotiate down."
+    ],
+    [
+      "Do you only handle travel, or the event itself?",
+      "Both, and either on its own. Some clients hand over the whole programme; others have the venue and agenda sorted and need sixty people moved and housed."
+    ],
+    [
+      "How quickly will someone reply?",
+      "Within the working day, and usually faster. If your enquiry is urgent, say so in the notes and call the number on this page."
+    ]
+  ]
+}

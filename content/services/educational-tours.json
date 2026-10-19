@@ -1,0 +1,33 @@
+{
+  "slug": "educational-tours",
+  "order": 5,
+  "icon": "book",
+  "name": "Educational & Group Tours",
+  "short_name": "Educational Tours",
+  "title": "Educational Tours for Schools & Colleges | ETHPL",
+  "meta": "Supervised educational tours, industrial visits and study trips for schools, colleges and institutions, with clear itineraries and documented safety...",
+  "tagline": "Supervised trips for schools, colleges and institutions.",
+  "intro": "Parents and principals are not buying a trip, they are deciding whether to trust you with other people's children. Everything in our planning for school and college groups is built around being able to answer that honestly, in writing, before you are asked.",
+  "included": [
+    "Itineraries written for a specific year group and learning objective",
+    "A documented supervision ratio, agreed before the trip is confirmed",
+    "Accommodation vetted for group suitability rather than only on price",
+    "Transport with verified drivers and a published movement schedule",
+    "A written emergency process, with escalation contacts for staff and parents",
+    "Industrial and campus visit coordination for college groups"
+  ],
+  "questions": [
+    [
+      "What supervision ratio do you work to?",
+      "It depends on the age group, the destination and your institution's own policy, which takes precedence. We agree the ratio in writing before confirming, rather than leaving it to be discovered on the trip."
+    ],
+    [
+      "Can you provide the documentation our board needs?",
+      "Yes — itinerary, accommodation details, transport arrangements, emergency process and the insurance position, as a pack you can put in front of a committee or send to parents."
+    ],
+    [
+      "Do you arrange female staff accompaniment?",
+      "This is a common and reasonable requirement for school groups and should be raised at the briefing. We will confirm specifically what we can commit to for your trip rather than giving a general assurance here."
+    ]
+  ]
+}

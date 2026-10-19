@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}MICE & Corporate Travel Guides | {{ brand.name | default('ETHPL') }}{% endblock %}
+
+{% block meta_description %}Planning guides for corporate offsites, conferences, incentive trips and educational tours from Delhi.{% endblock %}
+
+{% block content %}
+<section class="section section-pad-top">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="section-tag">Insights & Destination Guides</span>
+      <h1 class="section-title">Corporate Travelogues & Event Strategy</h1>
+      <p class="section-subtitle">
+        Practical destination guides, procurement breakdowns, and logistical blueprints for corporate meeting planners and executive teams.
+      </p>
+    </div>
+
+    <div class="filter-toolbar">
+      <div class="filter-group">
+        <button class="btn btn-primary btn-sm blog-tag-btn active" data-tag="all" type="button">All Insights</button>
+        <button class="btn btn-outline btn-sm blog-tag-btn" data-tag="Corporate Strategy" type="button">Corporate Strategy</button>
+        <button class="btn btn-outline btn-sm blog-tag-btn" data-tag="Convention Venues" type="button">Convention Venues</button>
+        <button class="btn btn-outline btn-sm blog-tag-btn" data-tag="Dubai" type="button">Dubai</button>
+        <button class="btn btn-outline btn-sm blog-tag-btn" data-tag="Singapore" type="button">Singapore</button>
+        <button class="btn btn-outline btn-sm blog-tag-btn" data-tag="Bali" type="button">Bali</button>
+        <button class="btn btn-outline btn-sm blog-tag-btn" data-tag="Aviation" type="button">Aviation</button>
+      </div>
+    </div>
+
+    <div class="grid-3" id="blog-posts-grid">
+      {% for post in posts %}
+      <article class="blog-card" data-tags="{{ post.tags | join(',') }}">
+        <div class="blog-card-media">
+          <img src="{{ post.hero_image }}" alt="{{ post.title }}" loading="lazy" width="400" height="200" />
+          <div class="card-badges">
+            <span class="badge badge-stone">{{ post.tags[0] }}</span>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span>{{ post.publish_date }}</span>
+            <span>•</span>
+            <span>{{ post.read_time }}</span>
+          </div>
+          <h2 class="blog-card-title">
+            <a href="/blog/{{ post.slug }}" style="color: inherit; text-decoration: none;">{{ post.title }}</a>
+          </h2>
+          <p class="blog-card-excerpt">{{ post.meta_description }}</p>
+          <a href="/blog/{{ post.slug }}" class="btn btn-corporate btn-sm" style="margin-top: auto; align-self: flex-start;">
+            Read Article
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const tagBtns = document.querySelectorAll('.blog-tag-btn');
+  const cards = document.querySelectorAll('.blog-card');
+
+  tagBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tagBtns.forEach(b => {
+        b.classList.remove('btn-primary', 'active');
+        b.classList.add('btn-outline');
+      });
+      btn.classList.remove('btn-outline');
+      btn.classList.add('btn-primary', 'active');
+
+      const selectedTag = btn.getAttribute('data-tag');
+
+      cards.forEach(card => {
+        const cardTags = card.getAttribute('data-tags') || '';
+        if (selectedTag === 'all' || cardTags.includes(selectedTag)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+});
+</script>
+{% endblock %}

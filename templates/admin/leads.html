@@ -1,0 +1,122 @@
+{% extends "admin/layout.html" %}
+
+{% block page_title %}Leads Inbox{% endblock %}
+
+{% block content %}
+{#
+  This page previously showed a hard-coded table of invented enquiries from
+  Tata Motors, Infosys, HDFC and Razorpay, complete with fabricated contact
+  addresses. It now reads the real lead store.
+#}
+<div class="admin-card">
+  <div class="admin-card-header">
+    <div>
+      <h2 class="admin-card-title">Enquiries</h2>
+      <p class="admin-card-sub">
+        {% if leads %}
+          {{ leads | length }} most recent{% if leads | length >= 200 %} (capped at 200 — export for the full list){% endif %}.
+          Newest first.
+        {% else %}
+          Every enquiry submitted through the site arrives here.
+        {% endif %}
+      </p>
+    </div>
+    {% if leads %}
+    <a class="admin-btn admin-btn-secondary admin-btn-sm" href="/admin/leads.csv" download>
+      Export CSV
+    </a>
+    {% endif %}
+  </div>
+
+  {% if lead_error == 'unconfigured' %}
+  <div class="admin-empty">
+    <h3>Lead storage is not configured</h3>
+    <p>
+      Enquiries are not being saved. Set <code>DATABASE_URL</code> to a Postgres
+      connection string in your hosting environment, and <code>SALES_EMAIL</code>
+      plus a mail transport so each enquiry is also emailed.
+    </p>
+    <p class="admin-empty-note">
+      Until then the enquiry form tells visitors honestly that submission is
+      unavailable, rather than accepting a lead nothing records.
+    </p>
+  </div>
+
+  {% elif lead_error == 'unreachable' %}
+  <div class="admin-empty">
+    <h3>Cannot reach the lead database</h3>
+    <p>
+      The database is configured but not responding. Enquiries submitted while
+      it is down are still emailed to the sales address, and those emails are
+      marked as the only record — check that inbox.
+    </p>
+  </div>
+
+  {% elif not leads %}
+  <div class="admin-empty">
+    <h3>No enquiries yet</h3>
+    <p>
+      Nothing has come through the form so far. This is expected on a new site:
+      the pages need to be indexed, and traffic has to reach them first.
+    </p>
+  </div>
+
+  {% else %}
+  <div class="admin-table-scroll">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th scope="col">Received</th>
+          <th scope="col">Organisation</th>
+          <th scope="col">Contact</th>
+          <th scope="col">Event</th>
+          <th scope="col">Destination</th>
+          <th scope="col">When</th>
+          <th scope="col">Size</th>
+          <th scope="col">Reference</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lead in leads %}
+        <tr>
+          <td class="admin-nowrap">{{ lead.created_at[:16] | replace('T', ' ') }}</td>
+          <td>
+            <strong>{{ lead.company_name }}</strong>
+            {% if lead.organisation_type %}
+            <span class="admin-pill admin-pill-review">{{ lead.organisation_type }}</span>
+            {% endif %}
+            {% if lead.notes %}
+            <details class="admin-notes">
+              <summary>Notes</summary>
+              <p>{{ lead.notes }}</p>
+            </details>
+            {% endif %}
+          </td>
+          <td>
+            {{ lead.contact_name }}<br>
+            {# Clickable so the sales desk can reply from a phone in one tap.
+               Jinja escapes the value; the scheme is chosen from its shape. #}
+            {% if '@' in (lead.contact_info or '') %}
+            <a href="mailto:{{ lead.contact_info }}">{{ lead.contact_info }}</a>
+            {% else %}
+            <a href="tel:{{ lead.contact_info | replace(' ', '') }}">{{ lead.contact_info }}</a>
+            {% endif %}
+          </td>
+          <td>{{ lead.event_type or '—' }}</td>
+          <td>{{ lead.destination or '—' }}</td>
+          <td>{{ lead.travel_window or '—' }}</td>
+          <td>{{ lead.pax_count }}</td>
+          <td class="admin-ref">{{ lead.reference }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="admin-card-sub admin-card-foot">
+    Reply within the hour where you can — response speed is the single biggest
+    factor in converting these.
+  </p>
+  {% endif %}
+</div>
+{% endblock %}

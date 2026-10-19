@@ -1,0 +1,278 @@
+{
+  "brand": {
+    "name": "ETHPL",
+    "fullName": "ETHPL Travel & Hospitality Pvt Ltd",
+    "tagline": "Corporate Travel & Event Planning",
+    "_tagline_note": "TODO(ethpl): confirm final tagline. Plan suggests 'Plan less. Meet better.' Change here only - every template reads this field.",
+    "address": "Corporate Centre, Connaught Place, New Delhi - 110001",
+    "_address_note": "TODO(ethpl): confirm this is the real registered office and that it matches your Google Business Profile exactly, character for character (NAP consistency drives local ranking).",
+    "phone": "",
+    "whatsapp": "",
+    "email": "",
+    "_contact_note": "TODO(ethpl): add the real sales phone, WhatsApp number and email. Until these are filled the footer shows no contact details, which costs enquiries."
+  },
+  "build_vs_redirect_map": {
+    "strategy": "redirect_first",
+    "partner_domain": "https://www.holidaymyplanet.com",
+    "split_rule": "ETHPL owns corporate MICE discovery, RFP lead capture, and curated catalogue; package and venue CTAs redirect to holidaymyplanet (/holidays and /hotels respectively - the partner has no dedicated venue surface, so hotel search stands in); group travel has no partner surface and falls back to the on-site RFP form",
+    "sections": [
+      {
+        "section": "Retail package browsing & detail",
+        "owner": "partner",
+        "action": "redirect"
+      },
+      {
+        "section": "Destination hub pages (49+ destinations)",
+        "owner": "partner",
+        "action": "redirect"
+      },
+      {
+        "section": "Visa applications & submissions",
+        "owner": "partner",
+        "action": "redirect"
+      },
+      {
+        "section": "Retail holiday & leisure booking",
+        "owner": "partner",
+        "action": "redirect"
+      },
+      {
+        "section": "Destination discovery surface & curated cards",
+        "owner": "ethpl",
+        "action": "build"
+      },
+      {
+        "section": "Convention hotels & venue directory",
+        "owner": "partner",
+        "action": "redirect"
+      },
+      {
+        "section": "Turnkey corporate offsite packages",
+        "owner": "partner",
+        "action": "redirect"
+      },
+      {
+        "section": "Corporate RFP / proposal request",
+        "owner": "ethpl",
+        "action": "build"
+      },
+      {
+        "section": "Corporate travelogues & editorial guides",
+        "owner": "ethpl",
+        "action": "build"
+      }
+    ]
+  },
+  "external_services": [
+    {
+      "id": "visa",
+      "slug": "visa",
+      "name": "Corporate E-Visa & Consular Desk",
+      "short_name": "Visa Services",
+      "tagline": "Fast-track business e-visas and bulk documentation for corporate delegations.",
+      "description": "Express corporate group visas, business travel clearances, and consular documentation handled through our primary processing desk.",
+      "url": "https://www.holidaymyplanet.com/visa/index",
+      "badge": "Express SLAs",
+      "icon": "passport",
+      "highlights": [
+        "Dedicated group desk for multi-delegate passport processing",
+        "Express 24–48 hour turnaround on key international hubs (Dubai, Baku)",
+        "Standardized document checklists and corporate letter templates",
+        "Real-time consular status tracking and bulk submission receipts"
+      ],
+      "process_steps": [
+        {
+          "step": "1",
+          "title": "Submit Delegate List",
+          "desc": "Upload passport bio-pages and photos via our secure partner consular portal."
+        },
+        {
+          "step": "2",
+          "title": "Document Verification",
+          "desc": "Consular desk verifies validity, photo dimensions, and visa category criteria."
+        },
+        {
+          "step": "3",
+          "title": "Embassy / E-Visa Filing",
+          "desc": "Applications are filed in batch with prioritized tracking."
+        },
+        {
+          "step": "4",
+          "title": "Issuance & Handover",
+          "desc": "Approved e-visas delivered in a consolidated PDF pack with manifest."
+        }
+      ],
+      "data_table": {
+        "title": "Corporate Group Visa Guidelines & SLA Benchmarks",
+        "caption": "Corporate group visa and logistics processing guidelines",
+        "disclaimer": "Indicative rates and SLAs for corporate delegations. Reviewed August 2026. Consular regulations and statutory fees subject to change.",
+        "headers": [
+          "Country / Destination",
+          "Visa Category",
+          "Processing SLA",
+          "Indicative Fee",
+          "Document Requirements"
+        ],
+        "rows": [
+          [
+            "UAE / Dubai",
+            "30-Day Express E-Visa",
+            "24 - 48 Hours",
+            "₹ 6,800 / pax",
+            "Clear Passport Bio-page Scan + Color Photograph"
+          ],
+          [
+            "Singapore",
+            "30-Day Multi-Entry E-Visa",
+            "3 - 5 Working Days",
+            "₹ 2,400 / pax",
+            "Passport, Form 14A, Corporate Undertaking Letter"
+          ],
+          [
+            "Thailand",
+            "Visa Exemption / On-Arrival",
+            "On-Arrival",
+            "Free / ₹ 2,200",
+            "Valid Passport (6-Month Validity), Return Flight Ticket"
+          ],
+          [
+            "Azerbaijan (Baku)",
+            "Official ASAN E-Visa",
+            "3 Hours (Urgent) / 3 Days",
+            "₹ 2,800 / pax",
+            "Scanned Copy of Passport Only"
+          ],
+          [
+            "Indonesia (Bali)",
+            "Electronic Visa on Arrival (E-VoA)",
+            "Instant / 24 Hours",
+            "₹ 2,700 / pax",
+            "Passport Scan, Return Ticket"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "holidays",
+      "slug": "holidays",
+      "name": "Bespoke Holiday & Leisure Travel",
+      "short_name": "Holiday Packages",
+      "tagline": "Tailor-made international holidays, premium family getaways, and VIP retreats.",
+      "description": "Browse 350+ curated holiday packages across 49+ destinations on our leisure travel platform.",
+      "url": "https://www.holidaymyplanet.com/?active=Holidays",
+      "badge": "Curated Stays",
+      "icon": "compass",
+      "highlights": [
+        "Over 350+ all-inclusive holiday itineraries across 49 global destinations",
+        "Curated 4-star and 5-star hotel partnerships with breakfast and transfers",
+        "Private chauffeur-driven sightseeing and English-speaking local guides",
+        "Customizable day-by-day itineraries tailored to leisure traveler preferences"
+      ],
+      "process_steps": [
+        {
+          "step": "1",
+          "title": "Explore Destinations",
+          "desc": "Browse destination packages, itineraries, and inclusions."
+        },
+        {
+          "step": "2",
+          "title": "Select Itinerary",
+          "desc": "Choose your travel dates, room categories, and optional excursions."
+        },
+        {
+          "step": "3",
+          "title": "Instant Quotation",
+          "desc": "View transparent itemized package pricing with taxes."
+        },
+        {
+          "step": "4",
+          "title": "Book Online",
+          "desc": "Secure booking with instant confirmation and dedicated travel concierge."
+        }
+      ]
+    }
+  ],
+  "why_us": [
+    {
+      "title": "One point of contact",
+      "description": "A dedicated event manager owns your brief from the first call to the return flight. No handovers between departments, no repeating yourself.",
+      "icon": "user-check"
+    },
+    {
+      "title": "Proposal in 24-48 hours",
+      "description": "You get itemised costs per delegate, not a single vague package price, so your finance team can approve it without a second round of questions.",
+      "icon": "file-text"
+    },
+    {
+      "title": "On-ground team at every event",
+      "description": "Someone from ETHPL is physically present through your event. When a flight shifts or a hall changes, it is handled on site rather than over email.",
+      "icon": "users"
+    },
+    {
+      "title": "India and international",
+      "description": "{destination_count} destinations across India and abroad, each with hotels and venues we have worked with directly.",
+      "icon": "globe"
+    },
+    {
+      "title": "Groups of 10 upward",
+      "description": "From a ten-person board retreat to a full sales conference. Small groups are planned with the same care, not turned away.",
+      "icon": "layers"
+    },
+    {
+      "title": "Everything in one place",
+      "description": "Visas, group flights, hotel blocks, venues, AV and transfers arranged by one team. No juggling four vendors and three invoices.",
+      "icon": "package"
+    },
+    {
+      "title": "Built for organisations",
+      "description": "GST invoices, purchase-order workflows, written safety and duty-of-care plans, and the documentation that procurement and school boards ask for.",
+      "icon": "shield"
+    },
+    {
+      "draft": true,
+      "title": "TODO(ethpl): years in business and events delivered",
+      "description": "TODO(ethpl): supply real figures, e.g. 'N years, N events, N travellers moved - trusted by [client types].' Marked draft so it does NOT render on the live site until you replace it with true numbers.",
+      "icon": "award"
+    }
+  ],
+  "legal_pages": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "How ETHPL collects, uses and protects the information you share with us.",
+      "status_note": "This page is a placeholder pending legal review. It is published because corporate and school buyers check for it before sharing staff or student data, but it is not yet a complete policy.",
+      "sections": [
+        {
+          "heading": "What we collect",
+          "body": "When you request a proposal we collect the name of your organisation, a contact name, a work email or phone number, and the details of the event you describe - destination, approximate dates, group size and any notes you add. We do not ask for payment details on this website."
+        },
+        {
+          "heading": "Why we collect it",
+          "body": "We use it only to prepare and discuss your proposal and to contact you about that enquiry. We do not sell your information. We do not add you to a marketing list without your consent."
+        },
+        {
+          "heading": "TODO(ethpl): sections still required before legal sign-off",
+          "body": "A lawyer should add: how long data is retained; which third parties receive it (hotels, airlines, visa processors, your booking partner); international transfer handling; your rights under India's Digital Personal Data Protection Act including how to request deletion; cookie and analytics disclosure; the name and email of a grievance officer; and the date the policy takes effect."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms & Conditions",
+      "intro": "The terms that apply to using this website and requesting a proposal from ETHPL.",
+      "status_note": "This page is a placeholder pending legal review. Proposal-specific commercial terms are issued with each written proposal and take precedence over anything on this page.",
+      "sections": [
+        {
+          "heading": "This website is an information catalogue",
+          "body": "Destinations, itineraries and any figures shown here are indicative and for planning only. They are not an offer and not a confirmed quotation. Pricing and availability are confirmed only in a written proposal issued by ETHPL for your specific event and dates."
+        },
+        {
+          "heading": "Requesting a proposal",
+          "body": "Submitting the enquiry form creates no contract and no obligation on either side. A booking exists only once a written proposal is accepted and the stated confirmation terms are met."
+        },
+        {
+          "heading": "TODO(ethpl): sections still required before legal sign-off",
+          "body": "A lawyer should add: payment and advance schedule; cancellation and refund terms by notice period; amendment charges; passport, visa and insurance responsibilities; force majeure; limitation of liability; supplier terms that pass through to the client; governing law and jurisdiction (Delhi); and dispute resolution."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{#- Inline SVG for a Why-Choose-Us benefit point.
+
+    Expects `point.icon` in scope. Icons are inlined rather than loaded from a
+    sprite or an icon font so the section needs no extra request and no JS, and
+    renders identically in the Vercel CDN build where only public/static is
+    served. Unknown or missing names fall through to a neutral check mark, so a
+    new benefit added in site.json can never render a broken image.
+
+    Stroke colour is inherited (`currentColor`) — the parent .feature-icon-box
+    sets it from a theme token, so no hex value belongs in here. -#}
+{%- set icon = point.icon | default('check') -%}
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  {%- if icon == 'user-check' %}
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline>
+  {%- elif icon == 'file-text' %}
+  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line>
+  {%- elif icon == 'users' %}
+  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+  {%- elif icon == 'globe' %}
+  <circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+  {%- elif icon == 'layers' %}
+  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline>
+  {%- elif icon == 'package' %}
+  <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
+  {%- elif icon == 'shield' %}
+  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+  {%- elif icon == 'presentation' %}
+  <path d="M2 3h20"></path><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"></path><path d="m7 21 5-5 5 5"></path>
+  {%- elif icon == 'book' %}
+  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+  {%- elif icon == 'plane' %}
+  <path d="M17.8 19.2 16 11l3.5-3.5a2.12 2.12 0 0 0-3-3L13 8 4.8 6.2a.5.5 0 0 0-.5.8l3.2 3.9-2 2-2.3-.6a.5.5 0 0 0-.5.8L5 16l2.9 2.3a.5.5 0 0 0 .8-.5l-.6-2.3 2-2 3.9 3.2a.5.5 0 0 0 .8-.5z"></path>
+  {%- elif icon == 'award' %}
+  <circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+  {%- else %}
+  <polyline points="20 6 9 17 4 12"></polyline>
+  {%- endif %}
+</svg>

@@ -1,0 +1,33 @@
+{
+  "slug": "varanasi",
+  "name": "Varanasi",
+  "region": "india",
+  "country": "India",
+  "category": "heritage",
+  "category_label": "Heritage",
+  "tagline": "Cultural and educational programmes with real substance",
+  "intro": "Varanasi works for a specific kind of trip: educational tours, cultural programmes, and offsites where the point is for the group to encounter something rather than be entertained. It is not a resort destination and should not be sold as one.",
+  "good_for": [
+    "Educational",
+    "Offsite"
+  ],
+  "best_months": "October to March",
+  "best_season": "October to March",
+  "access": "Direct flights from Delhi, a little under an hour and a half.",
+  "highlights": [
+    "Unmatched for school and college groups studying history, religion or Indian art — the itinerary writes itself.",
+    "Short flight from Delhi makes a two-night programme viable without losing days to travel.",
+    "Riverfront ceremonies give a group a shared experience that no team-building exercise replicates."
+  ],
+  "planning_note": "The old city is dense and largely unnavigable by coach, so movement is on foot in small groups. That needs more escorts than a resort programme, and it should be planned in rather than discovered on arrival.",
+  "typical_duration": "2N / 3D",
+  "sort_order": 21,
+  "featured": false,
+  "bento_size": "1x1",
+  "card_image": "",
+  "hero_image": "",
+  "image_is_placeholder": true,
+  "_image_note": "TODO(ethpl): no photograph held for this destination. Supply a real image, set card_image and hero_image, then remove image_is_placeholder.",
+  "ideal_group_size": "",
+  "gallery": []
+}

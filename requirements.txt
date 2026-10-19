@@ -1,0 +1,11 @@
+# Exact runtime lock. Refresh deliberately after reviewing upstream releases.
+fastapi==0.141.1
+uvicorn==0.52.4
+jinja2==3.1.6
+pydantic==2.13.4
+python-multipart==0.0.32
+# Lead storage on the deployed site. Vercel has a disposable filesystem, so
+# SQLite cannot retain enquiries there; psycopg talks to hosted Postgres
+# (Neon / Supabase) via DATABASE_URL. Imported lazily, so local development
+# on SQLite still works if this is absent.
+psycopg[binary]==3.3.6

@@ -1,0 +1,34 @@
+{
+  "slug": "shimla-manali",
+  "name": "Shimla & Manali",
+  "region": "india",
+  "country": "India",
+  "category": "hills",
+  "category_label": "Hills",
+  "tagline": "Hill-station offsites within a night's drive of Delhi",
+  "intro": "The classic North Indian hill circuit, and still one of the most cost-effective ways to get a Delhi team somewhere that feels genuinely away. Shimla suits conference-style programmes; Manali suits activity-led ones.",
+  "good_for": [
+    "Offsite",
+    "Educational",
+    "Budget-friendly"
+  ],
+  "best_months": "March to June, and September to November",
+  "best_season": "March to June, and September to November",
+  "access": "Roughly eight hours by road from Delhi to Shimla, or fly to Chandigarh and drive.",
+  "typical_duration": "3N / 4D",
+  "highlights": [
+    "Reachable entirely by road, which removes air fares from the budget and makes an annual offsite repeatable.",
+    "Shimla's older hotels have real conference capacity; Manali is better for adventure and team activity days.",
+    "A combined itinerary gives you a working leg and an activity leg without a second flight."
+  ],
+  "planning_note": "The road up is the whole risk. Landslides during the monsoon and snow in January can close it, and peak-season traffic can add hours. Build a buffer day and avoid promising a tight arrival time.",
+  "sort_order": 20,
+  "featured": false,
+  "bento_size": "1x1",
+  "card_image": "",
+  "hero_image": "",
+  "image_is_placeholder": true,
+  "_image_note": "TODO(ethpl): no photograph held for this destination. Supply a real image, set card_image and hero_image, then remove image_is_placeholder.",
+  "ideal_group_size": "",
+  "gallery": []
+}

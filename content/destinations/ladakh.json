@@ -1,0 +1,33 @@
+{
+  "slug": "ladakh",
+  "name": "Ladakh",
+  "region": "india",
+  "country": "India",
+  "hero_image": "/static/images/corbett.png",
+  "card_image": "/static/images/corbett.png",
+  "tagline": "High-altitude executive retreats & transformative journeys",
+  "intro": "Breathtaking Himalayan landscapes, luxury glamping retreats, and mindfulness leadership workshops in Leh and Nubra Valley.",
+  "best_season": "May to September",
+  "typical_duration": "5N / 6D",
+  "partner_url": "https://www.holidaymyplanet.com/ladakh",
+  "featured": false,
+  "sort_order": 9,
+  "category": "adventure",
+  "category_label": "Adventure",
+  "good_for": [
+    "Incentive",
+    "Offsite"
+  ],
+  "best_months": "May to September",
+  "access": "Direct flights from Delhi to Leh, roughly ninety minutes.",
+  "highlights": [
+    "A landscape that does the work for you — unmatched as a reward trip for a small, high-performing group.",
+    "Short flight from Delhi for a destination that feels nothing like it.",
+    "Best suited to compact groups on a deliberately unhurried itinerary."
+  ],
+  "planning_note": "Leh sits above 3,500 metres and altitude acclimatisation is not optional: the first day is rest, not programming. Groups with older delegates or medical conditions need a doctor's view first, and the season is short.",
+  "image_is_placeholder": true,
+  "_image_note": "TODO(ethpl): card_image/hero_image currently reuse another destination's photo. Supply a real photograph of this destination, then remove image_is_placeholder.",
+  "ideal_group_size": "",
+  "gallery": []
+}

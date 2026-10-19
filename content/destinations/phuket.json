@@ -1,0 +1,33 @@
+{
+  "slug": "phuket",
+  "name": "Phuket",
+  "region": "international",
+  "country": "Thailand",
+  "hero_image": "/static/images/bali.png",
+  "card_image": "/static/images/bali.png",
+  "tagline": "Island resort conventions & Andaman catamaran charters",
+  "intro": "Integrated 5-star resort complexes in Laguna Phuket offering ballrooms, private beach access, and island-hopping corporate charters.",
+  "best_season": "November to April",
+  "typical_duration": "4N / 5D",
+  "partner_url": "https://www.holidaymyplanet.com/phuket",
+  "featured": false,
+  "sort_order": 15,
+  "category": "short-haul",
+  "category_label": "Short-haul",
+  "good_for": [
+    "Incentive",
+    "Offsite"
+  ],
+  "best_months": "November to April",
+  "access": "Flights from Delhi, usually with one stop.",
+  "highlights": [
+    "Resort properties that hold a conference and a gala on site, with a beach the group does not have to travel to.",
+    "Stronger reward value than Bangkok or Pattaya when the trip is explicitly a prize.",
+    "Island setting reads as a significant upgrade on a domestic beach offsite."
+  ],
+  "planning_note": "The monsoon from May to October brings rough seas and cancelled water activities. Connections are also longer than Bangkok, so budget a travel day at each end.",
+  "image_is_placeholder": true,
+  "_image_note": "TODO(ethpl): card_image/hero_image currently reuse another destination's photo. Supply a real photograph of this destination, then remove image_is_placeholder.",
+  "ideal_group_size": "",
+  "gallery": []
+}

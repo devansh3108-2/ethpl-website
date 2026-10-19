@@ -1,0 +1,34 @@
+{
+  "slug": "jaipur",
+  "name": "Jaipur",
+  "region": "india",
+  "country": "India",
+  "hero_image": "/static/images/corbett.png",
+  "card_image": "/static/images/corbett.png",
+  "tagline": "Grand convention resorts & cultural heritage summits",
+  "intro": "High-capacity convention hotels with expansive palace lawns, world-class banqueting, and close flight connectivity from Delhi & Mumbai.",
+  "best_season": "October to March",
+  "typical_duration": "2N / 3D",
+  "partner_url": "https://www.holidaymyplanet.com/jaipur",
+  "featured": false,
+  "sort_order": 12,
+  "category": "heritage",
+  "category_label": "Heritage",
+  "good_for": [
+    "Offsite",
+    "Conference",
+    "Educational"
+  ],
+  "best_months": "October to March",
+  "access": "About five hours by road from Delhi, or a short flight.",
+  "highlights": [
+    "Close enough to Delhi NCR to drive, which removes air fares from the budget entirely for a two-night programme.",
+    "Heritage venues and palace hotels give an annual dinner a sense of occasion that a city banquet hall cannot.",
+    "Strong fit for educational tours: forts, observatory and craft workshops support a real itinerary rather than sightseeing filler."
+  ],
+  "planning_note": "Afternoons are punishing from April onward. Outdoor dinners and fort visits work well between November and February.",
+  "image_is_placeholder": true,
+  "_image_note": "TODO(ethpl): card_image/hero_image currently reuse another destination's photo. Supply a real photograph of this destination, then remove image_is_placeholder.",
+  "ideal_group_size": "",
+  "gallery": []
+}

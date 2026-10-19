@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% set d = destination %}
+{% set place = d.name ~ (', ' ~ d.country if d.country and d.country != d.name else '') %}
+
+{#- `short_name` where a full name would overrun a search result; the
+    ampersand matters too, since Jinja escapes it to &amp; in the output. -#}
+{% block title %}Corporate Offsites in {{ d.short_name | default(d.name) }} | {{ brand.name | default('ETHPL') }}{% endblock %}
+
+{% block meta_description %}Corporate offsites, conferences and incentive trips in {{ d.short_name | default(d.name) }}. Best months, access from Delhi, and what to watch for.{% endblock %}
+
+{% block head_extra %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  "name": "{{ d.name }}",
+  "description": "{{ d.intro | default(d.tagline) }}",
+  "url": "{{ site_base_url }}/destinations/{{ d.slug }}",
+  "touristType": [{% for tag in (d.good_for | default([])) %}"{{ tag }}"{% if not loop.last %}, {% endif %}{% endfor %}],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "{{ d.country | default('India') }}"
+  }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: var(--spacing-xl);">
+  <div class="container">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/destinations">Destinations</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ d.name }}</span>
+    </nav>
+
+    <div class="dest-detail-grid">
+      <div class="dest-detail-main">
+        <span class="section-tag">
+          {{ d.category_label | default('Destination') }} ·
+          {% if d.region == 'india' %}India{% else %}International{% endif %}
+        </span>
+        <h1 class="section-title">Corporate events &amp; group travel in {{ d.name }}</h1>
+        <p class="section-subtitle">{{ d.tagline }}</p>
+
+        {% if d.good_for %}
+        <ul class="tag-row" aria-label="Good for">
+          {% for tag in d.good_for %}
+          <li><span class="badge badge-green">{{ tag }}</span></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        {# A photograph of a different place, captioned as this one, is the kind
+           of detail a buyer who knows the destination will notice. Where we do
+           not yet hold a real image, the card renders the design system's
+           imageless treatment instead. #}
+        {% if d.hero_image and not d.image_is_placeholder %}
+        {% set img_src = d.hero_image %}
+        {% set img_alt = place %}
+        {% set img_width = 820 %}{% set img_height = 420 %}
+        {% set img_loading = 'eager' %}{% set img_class = 'dest-detail-hero' %}
+        {% include 'partials/picture.html' %}
+        {% else %}
+        <div class="dest-detail-hero dest-detail-hero-blank" role="presentation">
+          <span class="meta-note">{{ place }}</span>
+        </div>
+        {% endif %}
+
+        {% if d.intro %}
+        <p class="dest-detail-intro">{{ d.intro }}</p>
+        {% endif %}
+
+        {% if d.highlights %}
+        <h2 class="dest-detail-h2">Why groups come here</h2>
+        <ul class="dest-detail-list">
+          {% for point in d.highlights %}
+          <li>{{ point }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if d.planning_note %}
+        <aside class="legal-notice" role="note">
+          <strong>Worth knowing before you fix dates:</strong> {{ d.planning_note }}
+        </aside>
+        {% endif %}
+
+        <h2 class="dest-detail-h2">What a proposal for {{ d.name }} covers</h2>
+        <p>
+          Venue and hotel options against your agenda, movement and transfers, activities,
+          and an on-ground manager for the duration — costed per delegate so your finance
+          team can read it line by line. Figures on this page are indicative; your dates,
+          group size and standard of hotel decide the real number.
+        </p>
+
+        <div class="section-action-center" style="justify-content: flex-start;">
+          <button class="btn btn-primary btn-lg open-rfp-btn" type="button"
+                  data-destination="{{ place }}">
+            Get a proposal for {{ d.name }}
+          </button>
+          {% if brand.whatsapp %}
+          <a href="https://wa.me/{{ brand.whatsapp | replace(' ', '') | replace('+', '') }}?text=Hi, I'd like to plan a corporate trip to {{ d.name }}."
+             target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg" data-track="whatsapp-click">
+            Ask on WhatsApp
+          </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <aside class="dest-detail-aside">
+        <div class="panel dest-facts">
+          <h2 class="hero-widget-title">{{ d.name }} at a glance</h2>
+          <dl>
+            {% if d.best_months or d.best_season %}
+            <dt>Best months</dt>
+            <dd>{{ d.best_months | default(d.best_season) }}</dd>
+            {% endif %}
+            {% if d.access %}
+            <dt>Getting there from Delhi</dt>
+            <dd>{{ d.access }}</dd>
+            {% endif %}
+            {% if d.typical_duration %}
+            <dt>Typical programme</dt>
+            <dd>{{ d.typical_duration }}</dd>
+            {% endif %}
+            {% if d.ideal_group_size %}
+            <dt>Works well for</dt>
+            <dd>{{ d.ideal_group_size }}</dd>
+            {% endif %}
+            {% if d.category_label %}
+            <dt>Type</dt>
+            <dd>{{ d.category_label }}</dd>
+            {% endif %}
+          </dl>
+          <button class="btn btn-primary btn-w-full open-rfp-btn" type="button"
+                  data-destination="{{ place }}">
+            Request a proposal
+          </button>
+        </div>
+      </aside>
+    </div>
+
+    {% if related_destinations %}
+    <div style="margin-top: var(--spacing-3xl);">
+      <div class="section-subheading-row">
+        <h2 class="section-subheading">
+          Also considered for {% if d.region == 'india' %}domestic{% else %}international{% endif %} programmes
+        </h2>
+      </div>
+      <div class="grid-3" data-reveal-group>
+        {% for other in related_destinations %}
+        <a href="/destinations/{{ other.slug }}" class="service-panel">
+          <div>
+            <div class="service-panel-header">
+              <span class="badge badge-stone">{{ other.category_label | default(other.country) }}</span>
+            </div>
+            <h3 class="service-panel-title">{{ other.name }}</h3>
+            <p class="service-panel-desc">{{ other.tagline }}</p>
+          </div>
+          <div class="service-panel-action">View {{ other.name }} <span>→</span></div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}

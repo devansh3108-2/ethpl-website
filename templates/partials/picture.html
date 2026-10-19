@@ -1,0 +1,31 @@
+{#- Responsive image: WebP with a PNG fallback.
+
+    Parameters (set before including):
+      img_src     required  /static/... path to the PNG
+      img_alt     required  alt text; pass "" for decorative images
+      img_width   required  intrinsic width in CSS pixels
+      img_height  required  intrinsic height
+      img_class   optional  class on the <img>
+      img_loading optional  "lazy" (default) or "eager" for above-the-fold
+      img_sizes   optional  sizes attribute
+
+    width and height are required rather than optional on purpose: without
+    them the browser cannot reserve space, and every image on the page shoves
+    the layout down as it loads. That jitter is the single most irritating
+    thing about a slow connection, and it is free to fix.
+
+    The .webp path is derived by swapping the extension. That is safe because
+    tests/test_assets.py asserts every PNG in static/images has a sibling
+    .webp — a <picture> source that 404s is NOT retried as the fallback, so
+    the pairing has to be guaranteed rather than assumed.
+-#}
+<picture>
+  <source srcset="{{ img_src | replace('.png', '.webp') }}" type="image/webp"{% if img_sizes %} sizes="{{ img_sizes }}"{% endif %}>
+  <img src="{{ img_src }}"
+       alt="{{ img_alt }}"
+       width="{{ img_width }}"
+       height="{{ img_height }}"
+       loading="{{ img_loading | default('lazy') }}"
+       decoding="async"
+       {% if img_class %}class="{{ img_class }}"{% endif %} />
+</picture>

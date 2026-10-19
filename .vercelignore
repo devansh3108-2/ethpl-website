@@ -1,0 +1,7 @@
+venv/
+.venv/
+__pycache__/
+.pytest_cache/
+test_*.py
+*.sqlite3
+info_about_handover_to_other_ai_tools.md

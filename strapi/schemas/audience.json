@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "audiences",
+  "info": {
+    "singularName": "audience",
+    "pluralName": "audiences",
+    "displayName": "Audience"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "required": true,
+      "targetField": "name"
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "nav_label": {
+      "type": "string"
+    },
+    "org_type": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "meta": {
+      "type": "text",
+      "required": true
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "intro": {
+      "type": "text",
+      "required": true
+    },
+    "concerns": {
+      "type": "json"
+    },
+    "formats": {
+      "type": "json"
+    },
+    "cta": {
+      "type": "string"
+    },
+    "note": {
+      "type": "text"
+    },
+    "order": {
+      "type": "integer",
+      "default": 99
+    }
+  }
+}

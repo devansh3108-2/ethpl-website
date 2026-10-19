@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title | default('Legal') }} | {{ brand.name | default('ETHPL') }}{% endblock %}
+
+{% block meta_description %}{{ (page.intro | default('Legal information for ' ~ (brand.name | default('ETHPL')) ~ '.')) | truncate(150, true, '') }}{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    {% if page %}
+    <div class="legal-page">
+      <header class="legal-header">
+        <span class="section-tag">{{ brand.fullName | default('ETHPL Travel & Hospitality Pvt Ltd') }}</span>
+        <h1 class="section-title">{{ page.title }}</h1>
+        {% if page.intro %}
+        <p class="section-subtitle">{{ page.intro }}</p>
+        {% endif %}
+      </header>
+
+      {% if page.status_note %}
+      {# Shown deliberately. A placeholder policy presented as final is worse
+         than one that says plainly it is still under review. #}
+      <aside class="legal-notice" role="note">
+        <strong>Please note:</strong> {{ page.status_note }}
+      </aside>
+      {% endif %}
+
+      <div class="legal-body">
+        {% for section in (page.sections | default([])) %}
+        <section class="legal-section">
+          <h2>{{ section.heading }}</h2>
+          <p>{{ section.body }}</p>
+        </section>
+        {% endfor %}
+      </div>
+
+      <footer class="legal-footer">
+        <p class="meta-note">
+          Questions about this page? Write to
+          {% if brand.email %}<a href="mailto:{{ brand.email }}">{{ brand.email }}</a>{% else %}our team{% endif %}
+          or <button class="footer-link-btn open-rfp-btn" type="button">send us a message</button>.
+        </p>
+      </footer>
+    </div>
+    {% else %}
+    <div class="legal-page">
+      <h1 class="section-title">Page unavailable</h1>
+      <p class="section-subtitle">
+        This page has not been published yet. Please
+        <button class="footer-link-btn open-rfp-btn" type="button">contact us</button>
+        if you need this information.
+      </p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

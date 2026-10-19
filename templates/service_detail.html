@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}{{ service.title | default(service.name ~ ' | ' ~ brand.name) }}{% endblock %}
+
+{% block meta_description %}{{ service.meta | default(service.tagline) }}{% endblock %}
+
+{% block head_extra %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "{{ service.name }}",
+  "description": "{{ service.meta | default(service.tagline) }}",
+  "url": "{{ site_base_url }}/services/{{ service.slug }}",
+  "serviceType": "{{ service.name }}",
+  "areaServed": "IN",
+  "provider": {
+    "@type": "TravelAgency",
+    "name": "{{ brand.name | default('ETHPL') }}",
+    "url": "{{ site_base_url }}/"
+  }
+}
+</script>
+{% if service.questions %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for question, answer in service.questions %}
+    {
+      "@type": "Question",
+      "name": {{ question | tojson }},
+      "acceptedAnswer": { "@type": "Answer", "text": {{ answer | tojson }} }
+    }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: var(--spacing-xl);">
+  <div class="container">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/services">Services</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ service.short_name | default(service.name) }}</span>
+    </nav>
+
+    <div class="dest-detail-grid">
+      <div class="dest-detail-main">
+        <span class="section-tag">Service</span>
+        <h1 class="section-title">{{ service.name }}</h1>
+        <p class="section-subtitle">{{ service.tagline }}</p>
+
+        <p class="dest-detail-intro">{{ service.intro }}</p>
+
+        {% if service.included %}
+        <h2 class="dest-detail-h2">What this includes</h2>
+        <ul class="dest-detail-list dest-detail-list-check">
+          {% for item in service.included %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if service.questions %}
+        <h2 class="dest-detail-h2">Questions we get asked</h2>
+        <div class="faq-list">
+          {% for question, answer in service.questions %}
+          <details class="faq-item">
+            <summary>{{ question }}</summary>
+            <p>{{ answer }}</p>
+          </details>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="section-action-center" style="justify-content: flex-start;">
+          <button class="btn btn-primary btn-lg open-rfp-btn" type="button">Get a Free Proposal</button>
+          <a href="/destinations" class="btn btn-outline btn-lg">Browse destinations</a>
+        </div>
+      </div>
+
+      <aside class="dest-detail-aside">
+        <div class="panel dest-facts">
+          <h2 class="hero-widget-title">All services</h2>
+          <ul class="footer-links" style="margin-top: var(--spacing-sm);">
+            {% for other in (services | default([])) %}
+            <li>
+              {% if other.slug == service.slug %}
+              <strong aria-current="page">{{ other.short_name | default(other.name) }}</strong>
+              {% else %}
+              <a href="/services/{{ other.slug }}">{{ other.short_name | default(other.name) }}</a>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+          <button class="btn btn-primary btn-w-full open-rfp-btn" type="button"
+                  style="margin-top: var(--spacing-lg);">
+            Request a proposal
+          </button>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

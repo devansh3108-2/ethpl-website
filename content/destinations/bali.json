@@ -1,0 +1,33 @@
+{
+  "slug": "bali",
+  "name": "Bali",
+  "region": "international",
+  "country": "Indonesia",
+  "hero_image": "/static/images/bali.png",
+  "card_image": "/static/images/bali.png",
+  "tagline": "Tropical leadership retreats, wellness & oceanfront summits",
+  "intro": "World-class convention centres in Nusa Dua paired with tranquil cliffside villas and immersive cultural offsite experiences.",
+  "best_season": "April to October",
+  "typical_duration": "4N / 5D",
+  "partner_url": "https://www.holidaymyplanet.com/bali",
+  "featured": true,
+  "bento_size": "1x1",
+  "sort_order": 5,
+  "category": "long-haul",
+  "category_label": "Long-haul",
+  "good_for": [
+    "Incentive",
+    "Offsite",
+    "Conference"
+  ],
+  "best_months": "April to October",
+  "access": "Flights from Delhi, usually with one stop.",
+  "highlights": [
+    "Resort campuses designed for groups, where a conference, a team activity and a themed dinner all happen on one property.",
+    "Very strong perceived reward value, which is the entire point of an incentive trip.",
+    "Villa and resort mix suits a leadership retreat and a large sales conference equally."
+  ],
+  "planning_note": "Travel time and a stop at each end mean a sub-four-night programme spends too much of itself in transit. Plan five nights or choose somewhere closer.",
+  "ideal_group_size": "",
+  "gallery": []
+}

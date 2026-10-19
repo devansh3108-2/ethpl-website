@@ -1,0 +1,34 @@
+{
+  "slug": "udaipur",
+  "name": "Udaipur",
+  "region": "india",
+  "country": "India",
+  "hero_image": "/static/images/corbett.png",
+  "card_image": "/static/images/corbett.png",
+  "tagline": "Royal palace conclaves & lakeside executive networking",
+  "intro": "Heritage palace hotels and lakeside luxury properties for high-impact annual board meets, partner summits, and royal galas.",
+  "best_season": "October to March",
+  "typical_duration": "2N / 3D",
+  "partner_url": "https://www.holidaymyplanet.com/udaipur",
+  "featured": false,
+  "sort_order": 11,
+  "category": "heritage",
+  "category_label": "Heritage",
+  "good_for": [
+    "Incentive",
+    "Offsite",
+    "Conference"
+  ],
+  "best_months": "September to March",
+  "access": "Direct flights from Delhi, a little over an hour.",
+  "highlights": [
+    "Lake-facing properties and courtyard venues suit leadership retreats and top-performer trips where the setting is part of the reward.",
+    "Compact enough that a two-night programme does not lose half a day to travel between venues.",
+    "Reads as a premium destination without an international air fare or a visa."
+  ],
+  "planning_note": "Wedding season from November to February competes directly for the best venues. Hold dates early or shift to September and October.",
+  "image_is_placeholder": true,
+  "_image_note": "TODO(ethpl): card_image/hero_image currently reuse another destination's photo. Supply a real photograph of this destination, then remove image_is_placeholder.",
+  "ideal_group_size": "",
+  "gallery": []
+}

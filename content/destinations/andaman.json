@@ -1,0 +1,31 @@
+{
+  "slug": "andaman",
+  "name": "Andaman Islands",
+  "region": "india",
+  "country": "India",
+  "hero_image": "/static/images/andaman.png",
+  "card_image": "/static/images/andaman.png",
+  "tagline": "Pristine island incentive reward trips & ocean team-building",
+  "intro": "Exclusive island getaways featuring white-sand beaches, catamaran cruises, and private beach galas for top performance awardees.",
+  "best_season": "October to May",
+  "typical_duration": "4N / 5D",
+  "partner_url": "https://www.holidaymyplanet.com/andaman",
+  "featured": false,
+  "sort_order": 8,
+  "category": "beach",
+  "category_label": "Beach",
+  "good_for": [
+    "Incentive",
+    "Offsite"
+  ],
+  "best_months": "October to May",
+  "access": "Flights from Delhi via Chennai or Kolkata; allow most of a travel day.",
+  "highlights": [
+    "Genuinely novel for most Indian delegates, which matters when the trip is a reward rather than a meeting.",
+    "Water activities and island transfers build a shared experience that teams keep talking about.",
+    "No visa, no currency exchange, no international roaming to arrange."
+  ],
+  "planning_note": "Inter-island ferries and flight capacity are the real constraints. Groups above about sixty need phased movement, which is a plan, not a problem — but it has to be built in from the start.",
+  "ideal_group_size": "",
+  "gallery": []
+}

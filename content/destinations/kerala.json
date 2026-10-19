@@ -1,0 +1,36 @@
+{
+  "slug": "kerala",
+  "name": "Kerala (Kochi & Munnar)",
+  "region": "india",
+  "country": "India",
+  "hero_image": "/static/images/goa.png",
+  "card_image": "/static/images/goa.png",
+  "tagline": "Backwater conventions, tea estate retreats & wellness summits",
+  "intro": "Grand luxury convention centres in Kochi combined with tranquil tea-estate boutique resorts in Munnar for balanced offsites.",
+  "best_season": "September to March",
+  "typical_duration": "3N / 4D",
+  "partner_url": "https://www.holidaymyplanet.com/kerala",
+  "featured": false,
+  "sort_order": 10,
+  "category": "nature",
+  "category_label": "Nature & Wildlife",
+  "good_for": [
+    "Offsite",
+    "Incentive",
+    "Educational"
+  ],
+  "best_months": "September to March",
+  "access": "Flights from Delhi to Kochi, roughly three and a half hours.",
+  "highlights": [
+    "Backwater and hill-station properties suit slower, reflective formats — strategy offsites and leadership programmes rather than high-energy conferences.",
+    "Houseboat and plantation activities give a team-building day that does not feel like a corporate exercise.",
+    "Pairs a working session in Kochi with a resort stay nearby, so a single trip covers meetings and reward."
+  ],
+  "planning_note": "The monsoon runs roughly June to August. It is genuinely beautiful then and far cheaper, but outdoor sessions become a gamble.",
+  "image_is_placeholder": true,
+  "_image_note": "TODO(ethpl): card_image/hero_image currently reuse another destination's photo. Supply a real photograph of this destination, then remove image_is_placeholder.",
+  "ideal_group_size": "",
+  "gallery": [],
+  "short_name": "Kerala",
+  "_short_name_note": "Used in <title> and meta description only, where the full name would exceed what a search result shows. The page heading uses `name`."
+}

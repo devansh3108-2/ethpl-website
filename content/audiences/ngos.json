@@ -1,0 +1,38 @@
+{
+  "slug": "ngos",
+  "order": 3,
+  "name": "NGOs & Institutions",
+  "nav_label": "NGOs & Non-profits",
+  "title": "Travel & Retreats for NGOs and Non-profits | ETHPL",
+  "meta": "Retreats, field-team gatherings, donor visits and CSR trips for NGOs and non-profits, planned around tight budgets and reporting requirements.",
+  "heading": "For NGOs, non-profits and CSR teams",
+  "intro": "Non-profit travel runs on money that was raised for something else, and every rupee has to be justifiable to a funder. The planning problem is not luxury, it is getting a genuinely useful gathering out of a budget that cannot flex.",
+  "concerns": [
+    [
+      "Budget discipline",
+      "Costing that starts from your ceiling rather than working down to it, and a straight answer about what a lower number genuinely buys."
+    ],
+    [
+      "Documentation for funders and audit",
+      "Itemised invoicing and the supporting documentation that grant reporting and audits require, structured so it does not have to be reconstructed later."
+    ],
+    [
+      "Teams arriving from everywhere",
+      "Field staff travelling in from different states on different budgets and timings. Coordinating that is usually the hardest part, and it is planned as its own workstream."
+    ],
+    [
+      "Purpose over polish",
+      "A working venue that supports long sessions and real conversation beats a resort with a better lobby. We will say so when it is the better use of the money."
+    ]
+  ],
+  "formats": [
+    "Annual retreats and strategy gatherings",
+    "Field-team and partner convenings",
+    "Donor and funder site visits",
+    "Corporate CSR trips and volunteering programmes",
+    "Training workshops and capacity-building residentials",
+    "Conference travel for delegations"
+  ],
+  "cta": "Talk to us about a retreat or convening",
+  "org_type": "NGO"
+}

@@ -1,0 +1,33 @@
+{
+  "slug": "incentive-travel",
+  "order": 2,
+  "icon": "award",
+  "name": "Incentive & Reward Travel",
+  "short_name": "Incentive Travel",
+  "title": "Incentive Trip Organiser India | ETHPL",
+  "meta": "Incentive and reward trips for top performers, dealers and channel partners — designed to feel earned, with costs itemised per delegate.",
+  "tagline": "Reward trips that feel like a reward.",
+  "intro": "An incentive trip is a promise you made to people who hit their numbers. The gap between a trip that gets talked about for a year and one that feels like a cheap package is almost entirely in the detail — and the detail is what we handle.",
+  "included": [
+    "Destination options built around what the group will actually find rewarding",
+    "Qualifier communication support, so the trip motivates before it happens",
+    "Gala dinners, awards evenings and theme nights with production handled",
+    "Group air movement, including phased batches for large groups",
+    "Visa processing for the full group as a managed workstream",
+    "On-ground hosting throughout, not just at arrival"
+  ],
+  "questions": [
+    [
+      "Dealer trips and employee trips — same thing?",
+      "No. Dealer and channel-partner groups are usually larger, more mixed in age and expectation, and the commercial relationship changes what reads as generous. We plan them differently."
+    ],
+    [
+      "How do you keep a large group from feeling processed?",
+      "Mostly by sizing the movement correctly: phased transfers, enough hosts, and no single queue everyone has to stand in. It is unglamorous work and it is the difference."
+    ],
+    [
+      "Can you handle the qualifier announcement?",
+      "We can support the collateral and the destination reveal. The qualification criteria and the commercial side stay with you."
+    ]
+  ]
+}

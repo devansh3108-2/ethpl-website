@@ -1,0 +1,33 @@
+{
+  "slug": "conferences",
+  "order": 3,
+  "icon": "presentation",
+  "name": "Conferences & Annual Meets",
+  "short_name": "Conferences",
+  "title": "Conference Management Company Delhi | ETHPL",
+  "meta": "Conference and annual meet management from Delhi: venue, delegate registration, AV and staging, speaker logistics and an on-site desk.",
+  "tagline": "Venue, staging, delegates and speakers — one accountable team.",
+  "intro": "A conference is the event where things going wrong is most visible. Registration queues, a microphone that fails during the keynote, a speaker whose flight was not tracked. We plan against those specifically, because that is what the day is judged on.",
+  "included": [
+    "Venue sourcing against your delegate count, format and staging needs",
+    "Delegate registration, badging and an on-site help desk",
+    "AV, stage, lighting and backdrop production coordinated as one scope",
+    "Speaker travel, accommodation and green-room logistics tracked individually",
+    "Hotel room blocks near the venue, with a rooming list you can edit",
+    "A written run-of-show, and a contingency plan for the parts that can fail"
+  ],
+  "questions": [
+    [
+      "Do you handle the content and speakers themselves?",
+      "We handle their logistics — travel, stay, timing, green room, stage readiness. The programme and who speaks is yours; we make sure they are in the right place, on time, with working equipment."
+    ],
+    [
+      "What about hybrid or streamed sessions?",
+      "Streaming and recording can be built into the AV scope. Tell us at the briefing stage, because it changes the venue requirement and the internet provisioning."
+    ],
+    [
+      "How early do room blocks need confirming?",
+      "Earlier than most teams expect. For a conference with out-of-town delegates, blocks are the first thing to lock — the venue is usually available long after the nearby hotels are not."
+    ]
+  ]
+}

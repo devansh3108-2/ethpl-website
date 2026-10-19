@@ -1,0 +1,116 @@
+{
+  "kind": "collectionType",
+  "collectionName": "destinations",
+  "info": {
+    "singularName": "destination",
+    "pluralName": "destinations",
+    "displayName": "Destination"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "required": true,
+      "targetField": "name"
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "region": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "india",
+        "international"
+      ]
+    },
+    "country": {
+      "type": "string",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "beach",
+        "hills",
+        "heritage",
+        "nature",
+        "city",
+        "adventure",
+        "short-haul",
+        "long-haul"
+      ]
+    },
+    "category_label": {
+      "type": "string"
+    },
+    "tagline": {
+      "type": "string",
+      "required": true
+    },
+    "intro": {
+      "type": "text"
+    },
+    "good_for": {
+      "type": "json"
+    },
+    "best_months": {
+      "type": "string"
+    },
+    "best_season": {
+      "type": "string"
+    },
+    "access": {
+      "type": "text"
+    },
+    "typical_duration": {
+      "type": "string"
+    },
+    "highlights": {
+      "type": "json"
+    },
+    "planning_note": {
+      "type": "text"
+    },
+    "ideal_group_size": {
+      "type": "string"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "sort_order": {
+      "type": "integer",
+      "default": 99
+    },
+    "bento_size": {
+      "type": "string"
+    },
+    "card_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "hero_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
